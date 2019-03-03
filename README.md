@@ -1,2 +1,2 @@
 # Client Management
-A client management software module.
+A client management web application.
