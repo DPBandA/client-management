@@ -58,7 +58,7 @@ Email: info@dpbennett.com.jm
                         <p:graphicImage value="images/BSJ Logo - H41.png"/>
                         <h:panelGrid columns="1">   
 
-                            <h:outputText value="#{systemManager.applicationHeader}"
+                            <h:outputText value="#{clientManager.applicationHeader}"
                                           style="color: darkgrey; font-size: 14pt; font-weight: bold;" />
 
                             <h:outputText value="#{systemManager.applicationSubheader}"
@@ -133,10 +133,14 @@ Email: info@dpbennett.com.jm
 
 
                         <p:tab title="#{t.name}" closable="true"  >
-                        
+                            
                             <h:panelGroup rendered="#{t.id == 'System Administration'}" >
                                 <ui:include src="admin/generalAdminTab.xhtml" /> 
                             </h:panelGroup>                           
+                            
+                            <h:panelGroup rendered="#{t.id == 'Clients'}" >
+                                <ui:include src="client/clientsTab.xhtml" />                                                                
+                            </h:panelGroup>
 
                         </p:tab>
                     </p:tabView>
@@ -192,6 +196,10 @@ Email: info@dpbennett.com.jm
                                 listener="#{systemManager.onDashboardTabChange}" />
 
                         <p:tab title="#{t.name}" > 
+                            
+                            <h:panelGroup rendered="#{t.id == 'Client Management'}">
+                                <ui:include src="dashboard/client/clientsTab.xhtml" />
+                            </h:panelGroup>
                           
                             <h:panelGroup rendered="#{t.id == 'System Administration'}">
                                 <ui:include src="dashboard/admin/generalAdminTab.xhtml" />
