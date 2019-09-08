@@ -78,7 +78,6 @@
                     <dependentWarExcludes>
                         WEB-INF/web.xml, 
                         WEB-INF/glassfish-web.xml, 
-                        hrm/*,
                         index.xhtml                        
                     </dependentWarExcludes>
                     <overlays>
