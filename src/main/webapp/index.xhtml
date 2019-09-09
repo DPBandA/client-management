@@ -93,11 +93,6 @@ Email: info@dpbennett.com.jm
                                      update="headerForm"
                                      process="@this"/>
 
-
-                    <p:remoteCommand name="auth" autoRun="true" 
-                                     actionListener="#{systemManager.setupAuthentication}" />
-
-
                     <p:remoteCommand name="keepAliveRequest"
                                      actionListener="#{systemManager.handleKeepAlive}"
                                      onerror="PF('connectionErrorDialog').show();"
@@ -140,6 +135,10 @@ Email: info@dpbennett.com.jm
 
                             <h:panelGroup rendered="#{t.id == 'Human Resource'}" >
                                 <ui:include src="hrm/hrmTab.xhtml" /> 
+                            </h:panelGroup>
+                            
+                            <h:panelGroup  rendered="#{t.id == 'Financial Administration'}">
+                                <ui:include src="finance/financialAdminTab.xhtml" /> 
                             </h:panelGroup>
 
                             <h:panelGroup rendered="#{t.id == 'Clients'}" >
@@ -203,6 +202,10 @@ Email: info@dpbennett.com.jm
 
                             <h:panelGroup rendered="#{t.id == 'Client Management'}">
                                 <ui:include src="dashboard/client/clientsTab.xhtml" />
+                            </h:panelGroup>
+                            
+                            <h:panelGroup rendered="#{t.id == 'Financial Administration'}">
+                                <ui:include src="dashboard/finance/financialAdminTab.xhtml" />
                             </h:panelGroup>
 
                             <h:panelGroup rendered="#{t.id == 'Human Resource'}">
