@@ -47,7 +47,7 @@ Email: info@dpbennett.com.jm
         <p:inputText value="#{clientManager.selectedClient.name}"
                      style="width: 150%;"
                      id="clientName"
-                     disabled="#{!clientManager.isClientNameAndIdEditable}"
+                     disabled="#{!clientManager.user.privilege.canAddClient}"
                      validator="clientValidator">
             <f:attribute name="isNewClient" value="#{clientManager.isNewClient}" />
 
@@ -62,7 +62,7 @@ Email: info@dpbennett.com.jm
         <h:outputText value="Taxpayer Registration Number (TRN):" />        
         <p:inputText value="#{clientManager.selectedClient.taxRegistrationNumber}"
                      id="trn"
-                     disabled="#{!clientManager.isClientNameAndIdEditable}" >
+                     disabled="#{!clientManager.user.privilege.canAddClient}" >
             <p:ajax event="change"                    
                     global="true"                   
                     listener="#{clientManager.updateClient}"
