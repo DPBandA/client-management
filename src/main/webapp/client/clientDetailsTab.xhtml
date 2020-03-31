@@ -69,6 +69,18 @@ Email: info@dpbennett.com.jm
                     process="@this"/>
         </p:inputText>
         <h:outputText value="" />
+        
+        <h:outputText value="Type of business:" />        
+        <p:inputText value="#{clientManager.selectedClient.typeOfBusiness}"
+                     id="typeOfBusiness"
+                     style="width: 150%;"
+                     disabled="#{!clientManager.user.privilege.canAddClient}" >
+            <p:ajax event="change"                    
+                    global="true"                   
+                    listener="#{clientManager.updateClient}"
+                    process="@this"/>
+        </p:inputText>
+        <h:outputText value="" />
 
         <h:outputText id="currentBillingAddress" value="Most recent billing address: " 
                       style="font-weight: bold;"/> 
