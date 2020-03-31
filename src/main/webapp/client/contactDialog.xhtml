@@ -60,20 +60,32 @@ Email: info@dpbennett.com.jm
                             global="true"
                             listener="#{clientManager.updateContact}"
                             process="@this" />
-                        
+
                         <f:selectItems value="#{humanResourceManager.contactTypes}" />
-                        
+
                     </p:selectOneMenu>
 
-                    <h:outputText value="Title:" />
-                    <p:inputText value="#{clientManager.selectedContact.title}"
-                                 maxlength="50"
-                                 style="width: 100%" >
-                        <p:ajax event="change"
-                                global="true"                                    
-                                listener="#{clientManager.updateContact}"
-                                process="@this"/>
-                    </p:inputText>               
+                    <h:outputText value="Title:" style="font-weight: bold;" />
+                    <p:selectOneMenu value="#{clientManager.selectedContact.title}" >
+                        <p:ajax
+                            event="change"
+                            global="true"
+                            listener="#{clientManager.updateContact}"
+                            process="@this" />
+
+                        <f:selectItems value="#{humanResourceManager.personalTitles}" />
+
+                    </p:selectOneMenu>
+                    <ui:remove>
+                        <p:inputText value="#{clientManager.selectedContact.title}"
+                                     maxlength="50"
+                                     style="width: 100%" >
+                            <p:ajax event="change"
+                                    global="true"                                    
+                                    listener="#{clientManager.updateContact}"
+                                    process="@this"/>
+                        </p:inputText>         
+                    </ui:remove>
 
                     <h:outputText value="Firstname:" style="font-weight: bold" />
                     <p:inputText value="#{clientManager.selectedContact.firstName}"
