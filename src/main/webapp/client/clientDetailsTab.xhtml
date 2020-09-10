@@ -122,33 +122,27 @@ Email: info@dpbennett.com.jm
         <h:outputText value="" />
         <ui:remove>
             <p:menuButton icon="ui-icon-pencil" title="Add or edit address">
-                <p:menuitem>                       
-                    <p:commandButton value="Edit"
-                                     style="width: 300%;text-align: left;background: none;border: 0;"
-                                     icon="ui-icon-pencil"
-                                     title="Edit address"
-                                     update=":addressForm"
-                                     oncomplete="PF('addressFormDialog').show();"
-                                     actionListener="#{clientManager.editCurrentAddress}" 
-                                     process="@this" >
+                <p:menuitem value="Edit"
+                            icon="ui-icon-pencil"
+                            title="Edit address"
+                            update=":addressForm"
+                            oncomplete="PF('addressFormDialog').show();"
+                            actionListener="#{clientManager.editCurrentAddress}" 
+                            process="@this" >
 
-                        <p:resetInput target=":addressForm" />
+                    <p:resetInput target=":addressForm" />
 
-                    </p:commandButton>          
                 </p:menuitem>
-                <p:menuitem>                       
-                    <p:commandButton value="New"
-                                     style="width: 300%;text-align: left;background: none;border: 0;"
-                                     icon="ui-icon-plus" 
-                                     title="Add new address"
-                                     update=":addressForm"
-                                     oncomplete="PF('addressFormDialog').show();"
-                                     actionListener="#{clientManager.createNewAddress}" 
-                                     process="@this" >
+                <p:menuitem value="New"
+                            icon="ui-icon-plus" 
+                            title="Add new address"
+                            update=":addressForm"
+                            oncomplete="PF('addressFormDialog').show();"
+                            actionListener="#{clientManager.createNewAddress}" 
+                            process="@this" >
 
-                        <p:resetInput target=":addressForm" />
+                    <p:resetInput target=":addressForm" />
 
-                    </p:commandButton>          
                 </p:menuitem>
             </p:menuButton>  
         </ui:remove>
@@ -170,33 +164,27 @@ Email: info@dpbennett.com.jm
         <h:outputText value="" />
         <ui:remove>
             <p:menuButton icon="ui-icon-pencil" title="Add or edit contact">
-                <p:menuitem>                       
-                    <p:commandButton value="Edit"
-                                     style="width: 300%;text-align: left;background: none;border: 0;"
-                                     icon="ui-icon-pencil"
-                                     title="Edit contact"
-                                     update=":contactForm"
-                                     oncomplete="PF('contactFormDialog').show();"
-                                     actionListener="#{clientManager.editCurrentContact}" 
-                                     process="@this" >
+                <p:menuitem value="Edit"
+                            icon="ui-icon-pencil"
+                            title="Edit contact"
+                            update=":contactForm"
+                            oncomplete="PF('contactFormDialog').show();"
+                            actionListener="#{clientManager.editCurrentContact}" 
+                            process="@this" >
 
-                        <p:resetInput target=":contactForm" />
+                    <p:resetInput target=":contactForm" />
 
-                    </p:commandButton>       
                 </p:menuitem>
-                <p:menuitem>                       
-                    <p:commandButton value="New"
-                                     style="width: 300%;text-align: left;background: none;border: 0;"
-                                     icon="ui-icon-plus" 
-                                     title="Add new contact"
-                                     update=":contactForm"
-                                     oncomplete="PF('contactFormDialog').show();"
-                                     actionListener="#{clientManager.createNewContact}" 
-                                     process="@this" >
+                <p:menuitem value="New"
+                            icon="ui-icon-plus" 
+                            title="Add new contact"
+                            update=":contactForm"
+                            oncomplete="PF('contactFormDialog').show();"
+                            actionListener="#{clientManager.createNewContact}" 
+                            process="@this" >
 
-                        <p:resetInput target=":contactForm" />
+                    <p:resetInput target=":contactForm" />
 
-                    </p:commandButton>       
                 </p:menuitem>
             </p:menuButton>      
         </ui:remove>
