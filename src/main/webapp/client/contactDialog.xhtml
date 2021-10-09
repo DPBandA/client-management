@@ -1,6 +1,6 @@
 <!--
-Client Management (HRM) 
-Copyright (C) 2017  D P Bennett & Associates Limited
+Client Management (CM) 
+Copyright (C) 2021  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -121,9 +121,11 @@ Email: info@dpbennett.com.jm
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputText value="Phone:" />
+                    <h:outputText value="Phone:" style="font-weight: bold" />
                     <p:inputText value="#{clientManager.selectedContact.mainPhoneNumber.localNumber}"
+                                 id="contactPhone"
                                  maxlength="50"
+                                 validator="contactValidator"
                                  style="width: 100%" >
                         <p:ajax event="change"
                                 global="true"                                    
@@ -131,8 +133,10 @@ Email: info@dpbennett.com.jm
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputText value="Email:" />
+                    <h:outputText value="Email:" style="font-weight: bold" />
                     <p:inputText value="#{clientManager.selectedContact.internet.email1}"
+                                 id="contactEmail"
+                                 validator="contactValidator"
                                  maxlength="50"
                                  style="width: 100%" >                
                         <p:ajax event="change"
