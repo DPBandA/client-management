@@ -1,6 +1,6 @@
 <!--
-Job Management & Tracking System (JMTS) 
-Copyright (C) 2017  D P Bennett & Associates Limited
+Client Management 
+Copyright (C) 2021  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -27,28 +27,22 @@ Email: info@dpbennett.com.jm
             <p:commandButton
                 actionListener="#{clientManager.createNewClient}"                
                 disabled="#{!clientManager.user.privilege.canAddClient}"
-                global="true"                                        
-                onstart="PF('longProcessDialogVar').show();"                 
-                oncomplete="PF('longProcessDialogVar').hide();"
-                onerror="PF('connectionErrorDialog').show();"
-                value="New"       
-                update="headerForm:growl3"
+                global="true" 
+                value="New" 
                 title="Create new client"
-                icon="ui-icon-plus"
+                icon="pi pi-plus"
                 process="@this" >
 
                 <p:ajax event="dialogReturn" 
-                        update=":mainTabViewForm:mainTabView:clientsTable" />
+                        update=":appForm:mainTabView:clientsTable" />
 
             </p:commandButton>
 
         </p:toolbarGroup>
         <p:toolbarGroup align="right">
             <p:menuButton value="Tools" >                 
-                <p:menuitem value="Client management"
-                            onstart="PF('longProcessDialogVar').show();"                                                    
+                <p:menuitem value="Client management"                                                  
                             actionListener="#{clientManager.openClientsTab}"
-                            oncomplete="PF('longProcessDialogVar').hide();"
                             process="@this"/>
 
             </p:menuButton>         

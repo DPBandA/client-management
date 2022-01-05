@@ -1,6 +1,6 @@
 <!--
-Job Management & Tracking System (JMTS) 
-Copyright (C) 2017  D P Bennett & Associates Limited
+Client Management 
+Copyright (C) 2021  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -121,9 +121,9 @@ Email: info@dpbennett.com.jm
         </h:panelGroup>
         <h:outputText value="" />
         <ui:remove>
-            <p:menuButton icon="ui-icon-pencil" title="Add or edit address">
+            <p:menuButton icon="pi pi-pencil" title="Add or edit address">
                 <p:menuitem value="Edit"
-                            icon="ui-icon-pencil"
+                            icon="pi pi-pencil"
                             title="Edit address"
                             update=":addressForm"
                             oncomplete="PF('addressFormDialog').show();"
@@ -134,7 +134,7 @@ Email: info@dpbennett.com.jm
 
                 </p:menuitem>
                 <p:menuitem value="New"
-                            icon="ui-icon-plus" 
+                            icon="pi p-plus" 
                             title="Add new address"
                             update=":addressForm"
                             oncomplete="PF('addressFormDialog').show();"
@@ -163,9 +163,9 @@ Email: info@dpbennett.com.jm
         <h:outputText value="#{clientManager.currentContact.friendlyName}" />
         <h:outputText value="" />
         <ui:remove>
-            <p:menuButton icon="ui-icon-pencil" title="Add or edit contact">
+            <p:menuButton icon="pi pi-pencil" title="Add or edit contact">
                 <p:menuitem value="Edit"
-                            icon="ui-icon-pencil"
+                            icon="pi pi-pencil"
                             title="Edit contact"
                             update=":contactForm"
                             oncomplete="PF('contactFormDialog').show();"
@@ -176,7 +176,7 @@ Email: info@dpbennett.com.jm
 
                 </p:menuitem>
                 <p:menuitem value="New"
-                            icon="ui-icon-plus" 
+                            icon="pi pi-plus" 
                             title="Add new contact"
                             update=":contactForm"
                             oncomplete="PF('contactFormDialog').show();"

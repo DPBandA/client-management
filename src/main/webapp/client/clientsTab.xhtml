@@ -1,6 +1,6 @@
 <!--
-Job Management & Tracking System (JMTS) 
-Copyright (C) 2017  D P Bennett & Associates Limited
+Client Management 
+Copyright (C) 2021  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -30,14 +30,12 @@ Email: info@dpbennett.com.jm
             <ui:remove>
                 <p:commandButton value="Close"
                                  actionListener="#{clientManager.closeClientsTab}"
-                                 icon="ui-icon ui-icon-close" />
+                                 icon="pi pi-times" />
                 <p:spacer width="10" />
             </ui:remove>
             <p:commandButton 
                 value="New"
-                icon="ui-icon-plus" 
-                onstart="PF('longProcessDialogVar').show();"
-                oncomplete="PF('longProcessDialogVar').hide();"
+                icon="pi pi-plus" 
                 disabled="#{!clientManager.user.privilege.canAddClient}"
                 actionListener="#{clientManager.createNewClient}"                                            
                 process="@this"
@@ -45,7 +43,7 @@ Email: info@dpbennett.com.jm
 
                 <p:ajax event="dialogReturn" 
                         listener="#{clientManager.doClientSearch}"
-                        update=":mainTabViewForm:mainTabView:clientsTable"/>
+                        update=":appForm:mainTabView:clientsTable"/>
 
             </p:commandButton>
             <p:spacer width="20" />
@@ -56,7 +54,7 @@ Email: info@dpbennett.com.jm
 
                 <p:ajax event="keyup"                            
                         global="false"
-                        update=":mainTabViewForm:mainTabView:clientsTable"
+                        update=":appForm:mainTabView:clientsTable"
                         listener="#{clientManager.doClientSearch}"
                         process="@this"/>
 
@@ -69,7 +67,7 @@ Email: info@dpbennett.com.jm
                 <p:selectBooleanCheckbox style="vertical-align: middle"
                                          id="activeClientsOnly"
                                          value="#{clientManager.isActiveClientsOnly}" >
-                    <p:ajax  update=":mainTabViewForm:mainTabView:clientsTable"
+                    <p:ajax  update=":appForm:mainTabView:clientsTable"
                              listener="#{clientManager.doClientSearch}"
                              event="change"                                      
                              process="@this"/>
@@ -136,9 +134,7 @@ Email: info@dpbennett.com.jm
         </p:column>
 
         <p:column style="width:32px">
-            <p:commandButton icon="ui-icon-pencil"
-                             onstart="PF('longProcessDialogVar').show();"                               
-                             oncomplete="PF('longProcessDialogVar').hide();"
+            <p:commandButton icon="pi pi-pencil"
                              actionListener="#{clientManager.editSelectedClient}"
                              process="@this"
                              title="View or edit this client's detail">
@@ -147,7 +143,7 @@ Email: info@dpbennett.com.jm
                                              target="#{clientManager.selectedClient}" />
 
                 <p:ajax event="dialogReturn" 
-                        update=":mainTabViewForm:mainTabView:clientsTable"/>
+                        update=":appForm:mainTabView:clientsTable"/>
 
             </p:commandButton>
         </p:column>
@@ -158,21 +154,19 @@ Email: info@dpbennett.com.jm
             <ui:remove>
             <p:commandButton value="Close"
                              actionListener="#{clientManager.closeClientsTab}"
-                             icon="ui-icon ui-icon-close" />
+                             icon="pi pi-times" />
             <p:spacer width="10" />
             </ui:remove>
             <p:commandButton 
                 value="New"
-                icon="ui-icon-plus" 
-                onstart="PF('longProcessDialogVar').show();"
-                oncomplete="PF('longProcessDialogVar').hide();"
+                icon="pi pi-plus" 
                 disabled="#{!clientManager.user.privilege.canAddClient}"
                 actionListener="#{clientManager.createNewClient}"                                            
                 process="@this"
                 title="Add a new client to the client database" >
 
                 <p:ajax event="dialogReturn" 
-                        update=":mainTabViewForm:mainTabView:clientsTable"/>
+                        update=":appForm:mainTabView:clientsTable"/>
 
             </p:commandButton>
 
