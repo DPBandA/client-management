@@ -34,14 +34,16 @@ Email: info@dpbennett.com.jm
                   closable="true"
                   header="Preferences" >
 
+            
             <p:ajax event="close"
-                    listener="#{humanResourceManager.closePreferencesDialog2}"/>
+                    listener="#{systemManager.closePreferencesDialog2}"/>
+           
 
             <p:toolbar>
                 <p:toolbarGroup align="left" >
                     <p:commandButton value="Ok" 
                                      oncomplete="PF('mainTabViewVar').select(0);"
-                                     actionListener="#{humanResourceManager.closePreferencesDialog1}" />        
+                                     actionListener="#{systemManager.closePreferencesDialog1}" />        
                 </p:toolbarGroup>
             </p:toolbar>
             <p:tabView id="preferencesTabView" 
@@ -56,18 +58,18 @@ Email: info@dpbennett.com.jm
 
                         <p:selectBooleanCheckbox id="adminUnit" 
                                                  itemLabel="System Administration"
-                                                 rendered="#{humanResourceManager.user.privilege.canBeJMTSAdministrator}"
-                                                 value="#{humanResourceManager.user.modules.adminModule}" >
-                            <p:ajax listener="#{humanResourceManager.updateDashboardTabs}"
+                                                 rendered="#{systemManager.user.privilege.canBeJMTSAdministrator}"
+                                                 value="#{systemManager.user.modules.adminModule}" >
+                            <p:ajax listener="#{systemManager.updateDashboardTabs}"
                                     global="false"
                                     process="@this"/>
                         </p:selectBooleanCheckbox>
                       
                         <p:selectBooleanCheckbox id="crmUnit" 
                                                  itemLabel="Client Management"
-                                                 rendered="#{humanResourceManager.user.privilege.canAccessCRMUnit}"
-                                                 value="#{humanResourceManager.user.modules.crmModule}" >
-                            <p:ajax listener="#{humanResourceManager.updateDashboardTabs}"
+                                                 rendered="#{systemManager.user.privilege.canAccessCRMUnit}"
+                                                 value="#{systemManager.user.modules.crmModule}" >
+                            <p:ajax listener="#{systemManager.updateDashboardTabs}"
                                     global="false"
                                     process="@this"/>
                         </p:selectBooleanCheckbox>
@@ -79,7 +81,7 @@ Email: info@dpbennett.com.jm
                 <p:toolbarGroup align="left" >
                     <p:commandButton value="Ok" 
                                      oncomplete="PF('mainTabViewVar').select(0);"
-                                     actionListener="#{humanResourceManager.closePreferencesDialog1}" />        
+                                     actionListener="#{systemManager.closePreferencesDialog1}" />        
                 </p:toolbarGroup>
             </p:toolbar>
         </p:dialog>
