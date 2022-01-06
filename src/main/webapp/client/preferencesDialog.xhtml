@@ -49,9 +49,11 @@ Email: info@dpbennett.com.jm
             <p:tabView id="preferencesTabView" 
                        style="margin-top: 1px;margin-bottom: 1px;">
                 <p:tab title="General" id="generalTab">
-                    <h:panelGrid columns="2">                                               
-
-                    </h:panelGrid>
+                    <p:outputPanel deferred="true">
+                        <p>
+                            Various general user preferences go here.
+                        </p>
+                    </p:outputPanel>
                 </p:tab>
                 <p:tab title="Module Access" id="modulesTab">
                     <h:panelGrid columns="3" id="modulesTabPanelGrid" cellspacing="10">
