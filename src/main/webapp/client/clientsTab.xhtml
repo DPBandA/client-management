@@ -36,7 +36,7 @@ Email: info@dpbennett.com.jm
             <p:commandButton 
                 value="New"
                 icon="pi pi-plus" 
-                disabled="#{!clientManager.user.privilege.canAddClient}"
+                disabled="#{!clientManager.user.can('AddClient')}"
                 actionListener="#{clientManager.createNewClient}"                                            
                 process="@this"
                 title="Add a new client to the client database" >
@@ -61,7 +61,7 @@ Email: info@dpbennett.com.jm
             </p:inputText>
         </p:toolbarGroup>
 
-        <p:toolbarGroup align="right" rendered="#{clientManager.user.privilege.canBeJMTSAdministrator}" >
+        <p:toolbarGroup align="right" rendered="#{clientManager.user.can('BeJMTSAdministrator')}" >
             <h:outputText value="Active clients only: " />  
             <h:panelGroup>
                 <p:selectBooleanCheckbox style="vertical-align: middle"
@@ -119,7 +119,7 @@ Email: info@dpbennett.com.jm
         </p:column>
 
         <p:column headerText="Active?" 
-                  rendered="#{clientManager.user.privilege.canAddClient}">                                                                         
+                  rendered="#{clientManager.user.can('AddClient')}">                                                                         
             <p:cellEditor>                
                 <f:facet name="output">
                     <h:outputText value="#{client.isActive}" />
@@ -160,7 +160,7 @@ Email: info@dpbennett.com.jm
             <p:commandButton 
                 value="New"
                 icon="pi pi-plus" 
-                disabled="#{!clientManager.user.privilege.canAddClient}"
+                disabled="#{!clientManager.user.can('AddClient')}"
                 actionListener="#{clientManager.createNewClient}"                                            
                 process="@this"
                 title="Add a new client to the client database" >

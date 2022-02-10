@@ -26,7 +26,7 @@ Email: info@dpbennett.com.jm
         <p:toolbarGroup align="left">
             <p:commandButton
                 actionListener="#{clientManager.createNewClient}"                
-                disabled="#{!clientManager.user.privilege.canAddClient}"
+                disabled="#{!clientManager.user.can('AddClient')}"
                 global="true" 
                 value="New" 
                 title="Create new client"

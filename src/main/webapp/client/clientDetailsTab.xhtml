@@ -29,7 +29,7 @@ Email: info@dpbennett.com.jm
         <h:panelGroup>
             <p:selectBooleanCheckbox style="vertical-align: middle"
                                      id="clientActive"
-                                     disabled="#{!clientManager.user.privilege.canBeJMTSAdministrator}"
+                                     disabled="#{!clientManager.user.can('BeJMTSAdministrator')}"
                                      value="#{clientManager.selectedClient.active}" >
 
                 <p:ajax listener="#{clientManager.updateClient}"
@@ -46,7 +46,7 @@ Email: info@dpbennett.com.jm
         <h:outputText value="Name:" style="font-weight: bold;" />       
         <p:inputText value="#{clientManager.selectedClient.name}"
                      id="clientName"
-                     disabled="#{!clientManager.user.privilege.canAddClient}"
+                     disabled="#{!clientManager.user.can('AddClient')}"
                      validator="clientValidator">
             <f:attribute name="isNewClient" value="#{clientManager.isNewClient}" />
 
@@ -60,7 +60,7 @@ Email: info@dpbennett.com.jm
 
         <h:outputText value="Identification type:" />
         <p:selectOneMenu id="identificationType"                             
-                         disabled="#{!clientManager.user.privilege.canAddClient}"
+                         disabled="#{!clientManager.user.can('AddClient')}"
                          value="#{clientManager.selectedClient.identificationType}">
 
             <f:selectItems  value="#{systemManager.identificationTypeList}"
@@ -78,7 +78,7 @@ Email: info@dpbennett.com.jm
         <h:outputText value="Identification:" />        
         <p:inputText value="#{clientManager.selectedClient.identification}"
                      id="identification"
-                     disabled="#{!clientManager.user.privilege.canAddClient}" >
+                     disabled="#{!clientManager.user.can('AddClient')}" >
             <p:ajax event="change"                    
                     global="true"                   
                     listener="#{clientManager.updateClient}"
@@ -104,7 +104,7 @@ Email: info@dpbennett.com.jm
             <p:inputText value="#{clientManager.selectedClient.typeOfBusiness}"
                          id="typeOfBusiness"
                          style="width: 150%;"
-                         disabled="#{!clientManager.user.privilege.canAddClient}" >
+                         disabled="#{!clientManager.user.can('AddClient')}" >
                 <p:ajax event="change"                    
                         global="true"                   
                         listener="#{clientManager.updateClient}"

@@ -100,7 +100,7 @@ Email: info@dpbennett.com.jm
         <h:outputText value="Taxpayer Registration Number (TRN):" />        
         <p:inputText value="#{clientManager.selectedClient.taxRegistrationNumber}"
                      id="trn"
-                     disabled="#{!clientManager.user.privilege.canAddClient}" >
+                     disabled="#{!clientManager.user.can('AddClient')}" >
             <p:ajax event="change"                    
                     global="true"                   
                     listener="#{clientManager.updateClient}"
