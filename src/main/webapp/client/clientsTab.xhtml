@@ -61,8 +61,9 @@ Email: info@dpbennett.com.jm
             </p:inputText>
         </p:toolbarGroup>
 
-        <p:toolbarGroup align="right" rendered="#{clientManager.user.can('BeJMTSAdministrator')}" >
-            <h:outputText value="Active clients only: " />  
+        <p:toolbarGroup align="right" 
+                        rendered="#{clientManager.user.can('BeJMTSAdministrator')}" >
+            <h:outputText value="Active clients only" />  
             <h:panelGroup>
                 <p:selectBooleanCheckbox style="vertical-align: middle"
                                          id="activeClientsOnly"
@@ -95,21 +96,21 @@ Email: info@dpbennett.com.jm
             <h:outputText value="Search Results (found: #{clientManager.numClientFound})" />
         </f:facet>
 
-        <p:column sortBy="#{client.name}">
+        <p:column>
             <f:facet name="header">
                 <h:outputText value="Name"/>
             </f:facet>
             <h:outputText value="#{client.name}" />
         </p:column>
 
-        <p:column sortBy="#{client.editedBy}">
+        <p:column>
             <f:facet name="header">
                 <h:outputText value="Last edited by"/>
             </f:facet>
             <h:outputText value="#{client.editedBy}" />
         </p:column>
 
-        <p:column sortBy="#{client.dateEdited}">
+        <p:column>
             <f:facet name="header">
                 <h:outputText value="Date last edited"/>
             </f:facet>
