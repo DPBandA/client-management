@@ -1,6 +1,6 @@
 <!--
-Job Management & Tracking System (JMTS) 
-Copyright (C) 2017  D P Bennett & Associates Limited
+Client Management 
+Copyright (C) 2021  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -25,25 +25,25 @@ Email: info@dpbennett.com.jm
       xmlns:ui="http://java.sun.com/jsf/facelets"> 
     <h:panelGrid columns="4" cellspacing="10">
 
-        <h:outputText value="Entered by:" />           
+        <h:outputText value="Entered by" />           
         <p:inputText value="#{clientManager.selectedClient.enteredBy.name}"
                      readonly="true" 
                      style="background-color: lightgray !important;" />  
 
 
-        <h:outputText value="Date entered: " />
+        <h:outputText value="Date entered" />
         <p:calendar value="#{clientManager.selectedClient.dateEntered}"                                                            
                     readonly="true"
                     readonlyInput="true"
                     showOn="none"   
                     pattern="MMM dd, yyyy" />     
 
-        <h:outputText value="Edited by:" />            
+        <h:outputText value="Edited by" />            
         <p:inputText value="#{clientManager.selectedClient.editedBy.name}"                        
                      readonly="true" 
                      style="background-color: lightgray !important;" />  
 
-        <h:outputText value="Date edited: " />
+        <h:outputText value="Date edited" />
         <p:calendar value="#{clientManager.selectedClient.dateEdited}"  
                     readonly="true"
                     readonlyInput="true"

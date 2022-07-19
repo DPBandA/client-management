@@ -1,6 +1,6 @@
 <!--
-Job Management & Tracking System (JMTS) 
-Copyright (C) 2017  D P Bennett & Associates Limited
+Client Management 
+Copyright (C) 2021  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -25,11 +25,11 @@ Email: info@dpbennett.com.jm
       xmlns:ui="http://java.sun.com/jsf/facelets"> 
     <h:panelGrid id="generalDetailsPanelGrid" columns="3" cellspacing="5" >
 
-        <p:outputLabel for="clientActive" value="Active: " style="font-weight: bold;" />  
+        <p:outputLabel for="clientActive" value="Active" style="font-weight: bold;" />  
         <h:panelGroup>
             <p:selectBooleanCheckbox style="vertical-align: middle"
                                      id="clientActive"
-                                     disabled="#{!clientManager.user.privilege.canBeJMTSAdministrator}"
+                                     disabled="#{!clientManager.user.can('BeJMTSAdministrator')}"
                                      value="#{clientManager.selectedClient.active}" >
 
                 <p:ajax listener="#{clientManager.updateClient}"
@@ -43,10 +43,10 @@ Email: info@dpbennett.com.jm
         </h:panelGroup>
         <h:outputText value="" />
 
-        <h:outputText value="Name:" style="font-weight: bold;" />       
+        <h:outputText value="Name" style="font-weight: bold;" />       
         <p:inputText value="#{clientManager.selectedClient.name}"
                      id="clientName"
-                     disabled="#{!clientManager.user.privilege.canAddClient}"
+                     disabled="#{!clientManager.user.can('AddClient')}"
                      validator="clientValidator">
             <f:attribute name="isNewClient" value="#{clientManager.isNewClient}" />
 
@@ -58,9 +58,9 @@ Email: info@dpbennett.com.jm
         </p:inputText>     
         <h:outputText value="" />
 
-        <h:outputText value="Identification type:" />
+        <h:outputText value="Identification type" />
         <p:selectOneMenu id="identificationType"                             
-                         disabled="#{!clientManager.user.privilege.canAddClient}"
+                         disabled="#{!clientManager.user.can('AddClient')}"
                          value="#{clientManager.selectedClient.identificationType}">
 
             <f:selectItems  value="#{systemManager.identificationTypeList}"
@@ -75,10 +75,10 @@ Email: info@dpbennett.com.jm
         </p:selectOneMenu>  
         <h:outputText value="" />
 
-        <h:outputText value="Identification:" />        
+        <h:outputText value="Identification" />        
         <p:inputText value="#{clientManager.selectedClient.identification}"
                      id="identification"
-                     disabled="#{!clientManager.user.privilege.canAddClient}" >
+                     disabled="#{!clientManager.user.can('AddClient')}" >
             <p:ajax event="change"                    
                     global="true"                   
                     listener="#{clientManager.updateClient}"
@@ -86,7 +86,7 @@ Email: info@dpbennett.com.jm
         </p:inputText>
         <h:outputText value="" />        
 
-        <h:outputText value="Type of business:" />     
+        <h:outputText value="Type of business" />     
         <p:selectOneMenu value="#{clientManager.selectedClient.typeOfBusiness}"   
                          id="typeOfBusiness"
                          maxlength="50"
@@ -104,7 +104,7 @@ Email: info@dpbennett.com.jm
             <p:inputText value="#{clientManager.selectedClient.typeOfBusiness}"
                          id="typeOfBusiness"
                          style="width: 150%;"
-                         disabled="#{!clientManager.user.privilege.canAddClient}" >
+                         disabled="#{!clientManager.user.can('AddClient')}" >
                 <p:ajax event="change"                    
                         global="true"                   
                         listener="#{clientManager.updateClient}"
@@ -113,7 +113,7 @@ Email: info@dpbennett.com.jm
         </ui:remove>
         <h:outputText value="" />
 
-        <h:outputText id="currentBillingAddress" value="Most recent billing address: " 
+        <h:outputText id="currentBillingAddress" value="Most recent billing address" 
                       style="font-weight: bold;"/> 
         <h:panelGroup>
             <h:outputText id="addressLine1" value="#{clientManager.currentAddress.addressLine1FriendlyDisplay}"/>  
@@ -121,9 +121,9 @@ Email: info@dpbennett.com.jm
         </h:panelGroup>
         <h:outputText value="" />
         <ui:remove>
-            <p:menuButton icon="ui-icon-pencil" title="Add or edit address">
+            <p:menuButton icon="pi pi-pencil" title="Add or edit address">
                 <p:menuitem value="Edit"
-                            icon="ui-icon-pencil"
+                            icon="pi pi-pencil"
                             title="Edit address"
                             update=":addressForm"
                             oncomplete="PF('addressFormDialog').show();"
@@ -134,7 +134,7 @@ Email: info@dpbennett.com.jm
 
                 </p:menuitem>
                 <p:menuitem value="New"
-                            icon="ui-icon-plus" 
+                            icon="pi p-plus" 
                             title="Add new address"
                             update=":addressForm"
                             oncomplete="PF('addressFormDialog').show();"
@@ -159,13 +159,13 @@ Email: info@dpbennett.com.jm
         <h:outputText value="#{clientManager.currentAddress.stateOrProvince}" />
         <h:outputText value="" />
 
-        <h:outputText id="currentContact" value="Most recent contact: " style="font-weight: bold"/>    
+        <h:outputText id="currentContact" value="Most recent contact" style="font-weight: bold"/>    
         <h:outputText value="#{clientManager.currentContact.friendlyName}" />
         <h:outputText value="" />
         <ui:remove>
-            <p:menuButton icon="ui-icon-pencil" title="Add or edit contact">
+            <p:menuButton icon="pi pi-pencil" title="Add or edit contact">
                 <p:menuitem value="Edit"
-                            icon="ui-icon-pencil"
+                            icon="pi pi-pencil"
                             title="Edit contact"
                             update=":contactForm"
                             oncomplete="PF('contactFormDialog').show();"
@@ -176,7 +176,7 @@ Email: info@dpbennett.com.jm
 
                 </p:menuitem>
                 <p:menuitem value="New"
-                            icon="ui-icon-plus" 
+                            icon="pi pi-plus" 
                             title="Add new contact"
                             update=":contactForm"
                             oncomplete="PF('contactFormDialog').show();"
