@@ -61,7 +61,7 @@ Email: info@dpbennett.com.jm
                             listener="#{clientManager.updateContact}"
                             process="@this" />
 
-                        <f:selectItems value="#{humanResourceManager.contactTypes}" />
+                        <f:selectItems value="#{systemManager.contactTypes}" />
 
                     </p:selectOneMenu>
 
@@ -73,7 +73,7 @@ Email: info@dpbennett.com.jm
                             listener="#{clientManager.updateContact}"
                             process="@this" />
 
-                        <f:selectItems value="#{humanResourceManager.personalTitles}" />
+                        <f:selectItems value="#{systemManager.personalTitles}" />
 
                     </p:selectOneMenu>
                     <ui:remove>
