@@ -28,27 +28,23 @@ Email: info@dpbennett.com.jm
         <h:outputText value="Entered by" />           
         <p:inputText value="#{clientManager.selectedClient.enteredBy.name}"
                      readonly="true" 
-                     style="background-color: lightgray !important;" />  
+                     styleClass="read-only-text-field" />  
 
 
         <h:outputText value="Date entered" />
-        <p:calendar value="#{clientManager.selectedClient.dateEntered}"                                                            
-                    readonly="true"
-                    readonlyInput="true"
-                    showOn="none"   
-                    pattern="MMM dd, yyyy" />     
-
+        <p:inputText readonly="true"
+                     styleClass="read-only-text-field"
+                     value="#{systemManager.getDateStr(clientManager.selectedClient.dateEntered)}" />
+       
         <h:outputText value="Edited by" />            
         <p:inputText value="#{clientManager.selectedClient.editedBy.name}"                        
                      readonly="true" 
-                     style="background-color: lightgray !important;" />  
+                     styleClass="read-only-text-field" />  
 
         <h:outputText value="Date edited" />
-        <p:calendar value="#{clientManager.selectedClient.dateEdited}"  
-                    readonly="true"
-                    readonlyInput="true"
-                    showOn="none"   
-                    pattern="MMM dd, yyyy" />     
+        <p:inputText readonly="true"
+                     styleClass="read-only-text-field"
+                     value="#{systemManager.getDateStr(clientManager.selectedClient.dateEdited)}" />           
 
     </h:panelGrid>
 </html>
