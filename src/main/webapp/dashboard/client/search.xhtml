@@ -1,0 +1,109 @@
+<!--
+Client Management (CM) 
+Copyright (C) 2023  D P Bennett & Associates Limited
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+Email: info@dpbennett.com.jm
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:panelGrid columns="2" cellspacing="5" >
+        <p:outputLabel value="Search type" />            
+        <p:selectOneMenu value="#{clientManager.searchType}" >
+
+            <f:selectItems value="#{clientManager.groupedSearchTypes}" />
+
+            <p:ajax update="dateField,datePeriod,startSearchDate,endSearchDate" 
+                    listener="#{clientManager.updateSearchType}"
+                    global="false" 
+                    process="@this" />
+
+        </p:selectOneMenu>
+
+        <p:outputLabel value="Date field" />
+        <p:selectOneMenu value="#{clientManager.dateSearchPeriod.dateField}" 
+                         id="dateField" >
+            <p:ajax                        
+                listener="#{clientManager.updateDateSearchField}"
+                global="false"
+                process="@this" />
+
+            <f:selectItems value="#{clientManager.allDateSearchFields}" />
+
+        </p:selectOneMenu>
+
+        <p:outputLabel value="Date period" />               
+        <p:selectOneMenu value= "#{clientManager.dateSearchPeriod.name}" 
+                         id="datePeriod" >
+
+            <p:ajax listener="#{clientManager.dateSearchPeriod.initDatePeriod}"
+                    global="false"
+                    update="startSearchDate,endSearchDate"
+                    process="@this" />
+
+            <f:selectItems value="#{clientManager.datePeriods}"/>
+
+        </p:selectOneMenu>
+        <p:outputLabel value="Start" />
+        <p:calendar id="startSearchDate"
+                    value="#{clientManager.dateSearchPeriod.startDate}"                    
+                    size="17"
+                    navigator="true"
+                    validator="requiredFieldValidator"
+                    disabled="#{clientManager.dateSearchPeriod.startDateDisabled}"
+                    pattern="MMM dd, yyyy" />
+
+        <p:outputLabel value="End" />
+        <p:calendar id="endSearchDate"
+                    value="#{clientManager.dateSearchPeriod.endDate}"
+                    size="17"
+                    navigator="true"
+                    validator="requiredFieldValidator"
+                    disabled="#{clientManager.dateSearchPeriod.endDateDisabled}"
+                    pattern="MMM dd, yyyy" />
+
+    </h:panelGrid>   
+
+    <p:inputText value="#{clientManager.searchText}"  
+                 id="searchText" >
+
+        <p:ajax event="keyup"
+                global="false"
+                listener="#{clientManager.updateSearch}"
+                process="@this"/>
+
+        <p:ajax event="mousemove"
+                global="false"
+                listener="#{clientManager.updateSearch}"
+                process="@this"/>
+
+    </p:inputText>                    
+
+    <p:spacer width="5" />
+    <p:commandButton id="defaultCommand"
+                     class="search-button"   
+                     actionListener="#{clientManager.doDefaultCommand}"
+                     update=":appForm:mainTabView"
+                     icon="pi pi-search"
+                     process="@form" />
+
+    <p:watermark value="Enter search text" for="searchText" />
+
+</html>
