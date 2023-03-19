@@ -1,6 +1,6 @@
 <!--
 Client Management 
-Copyright (C) 2021  D P Bennett & Associates Limited
+Copyright (C) 2023  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -43,6 +43,7 @@ Email: info@dpbennett.com.jm
     <p:dataTable id="contactsTable"
                  var="contact"   
                  paginator="true"  
+                 reflow="false"
                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                  value="#{clientManager.contactsModel}">
 
@@ -78,7 +79,7 @@ Email: info@dpbennett.com.jm
             <h:outputText value="#{contact.type}" />
         </p:column>
 
-        <p:column style="width:32px" >
+        <p:column>
             <p:menuButton icon="pi pi-pencil" title="Edit or delete this contact">
                 <p:menuitem value="Edit"
                             icon="pi pi-pencil" 

@@ -1,6 +1,6 @@
 <!--
 Client Management 
-Copyright (C) 2021  D P Bennett & Associates Limited
+Copyright (C) 2023  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -25,10 +25,11 @@ Email: info@dpbennett.com.jm
       xmlns:f="http://java.sun.com/jsf/core">   
 
     <h:form id="contactForm">
-        <p:dialog width="450"
-                  height="370"
+        <p:dialog width="600"
+                  height="320"
                   draggable="true"
                   closable="false"
+                  responsive="true"
                   modal="true"
                   widgetVar="contactFormDialog"
                   header="Contact" >
@@ -50,7 +51,8 @@ Email: info@dpbennett.com.jm
             <p:panel style="margin-top: 1px;margin-bottom: 1px;">
                 <h:panelGrid columns="2" style="width: 85%">
 
-                    <h:outputText value="Type" style="font-weight: bold" />
+                    <h:outputLabel value="Type" style="font-weight: bold" 
+                                   for="contactType" />
                     <p:selectOneMenu value="#{clientManager.selectedContact.type}"
                                      id="contactType" 
                                      maxlength="50"
@@ -65,8 +67,10 @@ Email: info@dpbennett.com.jm
 
                     </p:selectOneMenu>
 
-                    <h:outputText value="Title" style="font-weight: bold;" />
-                    <p:selectOneMenu value="#{clientManager.selectedContact.title}" >
+                    <h:outputLabel value="Title" style="font-weight: bold;"
+                                   for="contactTitle" />
+                    <p:selectOneMenu value="#{clientManager.selectedContact.title}" 
+                                     id="contactTitle">
                         <p:ajax
                             event="change"
                             global="true"
@@ -87,7 +91,8 @@ Email: info@dpbennett.com.jm
                         </p:inputText>         
                     </ui:remove>
 
-                    <h:outputText value="Firstname" style="font-weight: bold" />
+                    <h:outputLabel value="Firstname" style="font-weight: bold" 
+                                   for="contactFirstname" />
                     <p:inputText value="#{clientManager.selectedContact.firstName}"
                                  id="contactFirstname"
                                  maxlength="50"
@@ -99,7 +104,8 @@ Email: info@dpbennett.com.jm
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputText value="Lastname" style="font-weight: bold" />
+                    <h:outputLabel value="Lastname" style="font-weight: bold"
+                                   for="contactLastname" />                    
                     <p:inputText value="#{clientManager.selectedContact.lastName}"
                                  id="contactLastname"
                                  maxlength="50"
@@ -111,8 +117,9 @@ Email: info@dpbennett.com.jm
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputText value="Position" />
+                    <h:outputLabel value="Position" for="contactPosition" />
                     <p:inputText value="#{clientManager.selectedContact.position}"
+                                 id="contactPosition"
                                  maxlength="50"
                                  style="width: 100%" >
                         <p:ajax event="change"
@@ -121,7 +128,8 @@ Email: info@dpbennett.com.jm
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputText value="Phone" style="font-weight: bold" />
+                    <h:outputLabel value="Phone" style="font-weight: bold" 
+                                   for="contactPhone" />
                     <p:inputText value="#{clientManager.selectedContact.mainPhoneNumber.localNumber}"
                                  id="contactPhone"
                                  maxlength="50"
@@ -133,7 +141,8 @@ Email: info@dpbennett.com.jm
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputText value="Email" style="font-weight: bold" />
+                    <h:outputLabel value="Email" style="font-weight: bold" 
+                                   for="contactEmail" />
                     <p:inputText value="#{clientManager.selectedContact.internet.email1}"
                                  id="contactEmail"
                                  validator="contactValidator"
@@ -145,8 +154,9 @@ Email: info@dpbennett.com.jm
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputText value="Website" />
+                    <h:outputLabel value="Website" for="contactWebsite" />
                     <p:inputText value="#{clientManager.selectedContact.internet.website1}"
+                                 id="contactWebsite"
                                  maxlength="50"
                                  style="width: 100%" >
                         <p:ajax event="change"
@@ -155,8 +165,9 @@ Email: info@dpbennett.com.jm
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputText value="Fax" />
+                    <h:outputLabel value="Fax" for="contactFax" />
                     <p:inputText value="#{clientManager.selectedContact.mainFaxNumber.localNumber}"
+                                 id="contactFax"
                                  maxlength="50"
                                  style="width: 100%">
                         <p:ajax event="change"

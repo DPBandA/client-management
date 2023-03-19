@@ -1,6 +1,6 @@
 <!--
 Client Management 
-Copyright (C) 2021  D P Bennett & Associates Limited
+Copyright (C) 2023  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -50,7 +50,7 @@ Email: info@dpbennett.com.jm
             <p:inputText id="clientSearchText" 
                          placeholder="Enter search text"
                          style="width:200px" 
-                         value="#{clientManager.searchText}" >
+                         value="#{clientManager.clientSearchText}" >
 
                 <p:ajax event="keyup"                            
                         global="false"
@@ -62,8 +62,9 @@ Email: info@dpbennett.com.jm
         </p:toolbarGroup>
 
         <p:toolbarGroup align="right" 
-                        rendered="#{clientManager.user.can('BeJMTSAdministrator')}" >
-            <h:outputText value="Active clients only" />  
+                        rendered="#{clientManager.user.can('viewAllClients')}" >
+            <p:outputLabel value="Active clients only" for="activeClientsOnly"/>  
+            <p:spacer width="5" />
             <h:panelGroup>
                 <p:selectBooleanCheckbox style="vertical-align: middle"
                                          id="activeClientsOnly"
@@ -85,7 +86,8 @@ Email: info@dpbennett.com.jm
                  style="margin-bottom: 1px;margin-top: 1px;"
                  editable="true" 
                  editMode="cell"
-                 paginator="true"                                 
+                 paginator="true"      
+                 reflow="true"
                  rows="15"
                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                  value="#{clientManager.foundClients}">                        
@@ -134,7 +136,7 @@ Email: info@dpbennett.com.jm
             </p:cellEditor>         
         </p:column>
 
-        <p:column style="width:32px">
+        <p:column>
             <p:commandButton icon="pi pi-pencil"
                              actionListener="#{clientManager.editSelectedClient}"
                              process="@this"
@@ -153,10 +155,10 @@ Email: info@dpbennett.com.jm
     <p:toolbar>
         <p:toolbarGroup align="left" >   
             <ui:remove>
-            <p:commandButton value="Close"
-                             actionListener="#{clientManager.closeClientsTab}"
-                             icon="pi pi-times" />
-            <p:spacer width="10" />
+                <p:commandButton value="Close"
+                                 actionListener="#{clientManager.closeClientsTab}"
+                                 icon="pi pi-times" />
+                <p:spacer width="10" />
             </ui:remove>
             <p:commandButton 
                 value="New"

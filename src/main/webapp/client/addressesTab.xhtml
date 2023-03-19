@@ -1,6 +1,6 @@
 <!--
 Client Management 
-Copyright (C) 2021  D P Bennett & Associates Limited
+Copyright (C) 2023  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -23,6 +23,7 @@ Email: info@dpbennett.com.jm
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">    
+    
     <p:toolbar style="margin-bottom: 1px;">
         <p:toolbarGroup align="left">
             <p:commandButton value="New"
@@ -40,7 +41,8 @@ Email: info@dpbennett.com.jm
     </p:toolbar>
     <p:dataTable id="addressesTable"
                  var="address"
-                 paginator="true"                                 
+                 paginator="true"   
+                 reflow="false"
                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                  value="#{clientManager.addressesModel}">
 
@@ -56,7 +58,7 @@ Email: info@dpbennett.com.jm
             <h:outputText value="#{address.type}" />
         </p:column>
 
-        <p:column style="width:32px" >
+        <p:column>
             <p:menuButton icon="pi pi-pencil" title="Edit or delete this address">
                 <p:menuitem
                     value="Edit"

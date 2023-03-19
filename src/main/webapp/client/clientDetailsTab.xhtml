@@ -1,6 +1,6 @@
 <!--
 Client Management 
-Copyright (C) 2021  D P Bennett & Associates Limited
+Copyright (C) 2023  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -23,6 +23,7 @@ Email: info@dpbennett.com.jm
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
     <h:panelGrid id="generalDetailsPanelGrid" columns="3" cellspacing="5" >
 
         <p:outputLabel for="clientActive" value="Active" style="font-weight: bold;" />  
@@ -43,7 +44,8 @@ Email: info@dpbennett.com.jm
         </h:panelGroup>
         <h:outputText value="" />
 
-        <h:outputText value="Name" style="font-weight: bold;" />       
+        <h:outputLabel value="Name" style="font-weight: bold;" 
+                       for="clientName" />       
         <p:inputText value="#{clientManager.selectedClient.name}"
                      id="clientName"
                      disabled="#{!clientManager.user.can('AddClient')}"
@@ -58,7 +60,8 @@ Email: info@dpbennett.com.jm
         </p:inputText>     
         <h:outputText value="" />
 
-        <h:outputText value="Identification type" />
+        <h:outputLabel value="Identification type" 
+                       for="identificationType" />
         <p:selectOneMenu id="identificationType"                             
                          disabled="#{!clientManager.user.can('AddClient')}"
                          value="#{clientManager.selectedClient.identificationType}">
@@ -75,7 +78,7 @@ Email: info@dpbennett.com.jm
         </p:selectOneMenu>  
         <h:outputText value="" />
 
-        <h:outputText value="Identification" />        
+        <h:outputLabel value="Identification" for="identification" />        
         <p:inputText value="#{clientManager.selectedClient.identification}"
                      id="identification"
                      disabled="#{!clientManager.user.can('AddClient')}" >
@@ -86,7 +89,7 @@ Email: info@dpbennett.com.jm
         </p:inputText>
         <h:outputText value="" />        
 
-        <h:outputText value="Type of business" />     
+        <h:outputLabel value="Type of business" for="typeOfBusiness" />     
         <p:selectOneMenu value="#{clientManager.selectedClient.typeOfBusiness}"   
                          id="typeOfBusiness"
                          maxlength="50"
@@ -113,8 +116,9 @@ Email: info@dpbennett.com.jm
         </ui:remove>
         <h:outputText value="" />
 
-        <h:outputText id="currentBillingAddress" value="Most recent billing address" 
-                      style="font-weight: bold;"/> 
+        <h:outputLabel id="currentBillingAddress" value="Most recent billing address" 
+                       for="addressLine1"
+                       style="font-weight: bold;"/> 
         <h:panelGroup>
             <h:outputText id="addressLine1" value="#{clientManager.currentAddress.addressLine1FriendlyDisplay}"/>  
             <p:watermark for="addressLine1" value="-- none --" />

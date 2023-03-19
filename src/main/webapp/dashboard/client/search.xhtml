@@ -37,7 +37,7 @@ Email: info@dpbennett.com.jm
 
         </p:selectOneMenu>
 
-        <p:outputLabel value="Date field" />
+        <p:outputLabel value="Date field" for="dateField" />
         <p:selectOneMenu value="#{clientManager.dateSearchPeriod.dateField}" 
                          id="dateField" >
             <p:ajax                        
@@ -49,7 +49,7 @@ Email: info@dpbennett.com.jm
 
         </p:selectOneMenu>
 
-        <p:outputLabel value="Date period" />               
+        <p:outputLabel value="Date period" for="datePeriod" />               
         <p:selectOneMenu value= "#{clientManager.dateSearchPeriod.name}" 
                          id="datePeriod" >
 
@@ -61,7 +61,8 @@ Email: info@dpbennett.com.jm
             <f:selectItems value="#{clientManager.datePeriods}"/>
 
         </p:selectOneMenu>
-        <p:outputLabel value="Start" />
+        
+        <p:outputLabel value="Start" for="startSearchDate" />
         <p:calendar id="startSearchDate"
                     value="#{clientManager.dateSearchPeriod.startDate}"                    
                     size="17"
@@ -70,7 +71,7 @@ Email: info@dpbennett.com.jm
                     disabled="#{clientManager.dateSearchPeriod.startDateDisabled}"
                     pattern="MMM dd, yyyy" />
 
-        <p:outputLabel value="End" />
+        <p:outputLabel value="End" for="endSearchDate" />
         <p:calendar id="endSearchDate"
                     value="#{clientManager.dateSearchPeriod.endDate}"
                     size="17"
@@ -89,13 +90,7 @@ Email: info@dpbennett.com.jm
                 listener="#{clientManager.updateSearch}"
                 process="@this"/>
 
-        <p:ajax event="mousemove"
-                global="false"
-                listener="#{clientManager.updateSearch}"
-                process="@this"/>
-
-    </p:inputText>                    
-
+    </p:inputText> 
     <p:spacer width="5" />
     <p:commandButton id="defaultCommand"
                      class="search-button"   
