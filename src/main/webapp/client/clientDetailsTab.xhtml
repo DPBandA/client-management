@@ -30,7 +30,7 @@ Email: info@dpbennett.com.jm
         <h:panelGroup>
             <p:selectBooleanCheckbox style="vertical-align: middle"
                                      id="clientActive"
-                                     disabled="#{!clientManager.user.can('BeJMTSAdministrator')}"
+                                     disabled="#{!clientManager.user.can('AddClient')}"
                                      value="#{clientManager.selectedClient.active}" >
 
                 <p:ajax listener="#{clientManager.updateClient}"
