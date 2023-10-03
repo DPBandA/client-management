@@ -30,6 +30,7 @@ Email: info@dpbennett.com.jm
         <h:panelGroup>
             <p:selectBooleanCheckbox style="vertical-align: middle"
                                      id="clientActive"
+                                     required="true"
                                      disabled="#{!clientManager.user.can('AddClient')}"
                                      value="#{clientManager.selectedClient.active}" >
 
@@ -44,11 +45,13 @@ Email: info@dpbennett.com.jm
         </h:panelGroup>
         <h:outputText value="" />
 
-        <h:outputLabel value="Name" style="font-weight: bold;" 
+        <p:outputLabel value="Name" style="font-weight: bold;" 
                        for="clientName" />       
         <p:inputText value="#{clientManager.selectedClient.name}"
                      id="clientName"
                      disabled="#{!clientManager.user.can('AddClient')}"
+                     required="true"
+                     requiredMessage="Name Required"
                      validator="clientValidator">
             <f:attribute name="isNewClient" value="#{clientManager.isNewClient}" />
 
@@ -60,7 +63,7 @@ Email: info@dpbennett.com.jm
         </p:inputText>     
         <h:outputText value="" />
 
-        <h:outputLabel value="Identification type" 
+        <p:outputLabel value="Identification type" 
                        for="identificationType" />
         <p:selectOneMenu id="identificationType"                             
                          disabled="#{!clientManager.user.can('AddClient')}"
@@ -78,7 +81,7 @@ Email: info@dpbennett.com.jm
         </p:selectOneMenu>  
         <h:outputText value="" />
 
-        <h:outputLabel value="Identification" for="identification" />        
+        <p:outputLabel value="Identification" for="identification" />        
         <p:inputText value="#{clientManager.selectedClient.identification}"
                      id="identification"
                      disabled="#{!clientManager.user.can('AddClient')}" >
@@ -89,7 +92,7 @@ Email: info@dpbennett.com.jm
         </p:inputText>
         <h:outputText value="" />        
 
-        <h:outputLabel value="Type of business" for="typeOfBusiness" />     
+        <p:outputLabel value="Type of business" for="typeOfBusiness" />     
         <p:selectOneMenu value="#{clientManager.selectedClient.typeOfBusiness}"   
                          id="typeOfBusiness"
                          maxlength="50"
@@ -106,7 +109,6 @@ Email: info@dpbennett.com.jm
         <ui:remove>
             <p:inputText value="#{clientManager.selectedClient.typeOfBusiness}"
                          id="typeOfBusiness"
-                         style="width: 150%;"
                          disabled="#{!clientManager.user.can('AddClient')}" >
                 <p:ajax event="change"                    
                         global="true"                   
@@ -116,9 +118,8 @@ Email: info@dpbennett.com.jm
         </ui:remove>
         <h:outputText value="" />
 
-        <h:outputLabel id="currentBillingAddress" value="Most recent billing address" 
-                       for="addressLine1"
-                       style="font-weight: bold;"/> 
+        <p:outputLabel id="currentBillingAddress" value="Most recent billing address" 
+                       for="addressLine1" /> 
         <h:panelGroup>
             <h:outputText id="addressLine1" value="#{clientManager.currentAddress.addressLine1FriendlyDisplay}"/>  
             <p:watermark for="addressLine1" value="-- none --" />
@@ -163,7 +164,7 @@ Email: info@dpbennett.com.jm
         <h:outputText value="#{clientManager.currentAddress.stateOrProvince}" />
         <h:outputText value="" />
 
-        <h:outputText id="currentContact" value="Most recent contact" style="font-weight: bold"/>    
+        <h:outputText id="currentContact" value="Most recent contact" />    
         <h:outputText value="#{clientManager.currentContact.friendlyName}" />
         <h:outputText value="" />
         <ui:remove>

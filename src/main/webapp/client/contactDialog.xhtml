@@ -25,7 +25,7 @@ Email: info@dpbennett.com.jm
       xmlns:f="http://java.sun.com/jsf/core">   
 
     <h:form id="contactForm">
-        <p:dialog width="600"
+        <p:dialog width="400"
                   height="320"
                   draggable="true"
                   closable="false"
@@ -47,15 +47,23 @@ Email: info@dpbennett.com.jm
                                      oncomplete="PF('contactFormDialog').hide();"
                                      process="@this" />
                 </p:toolbarGroup>
+
+                <p:toolbarGroup align="right">
+
+                    <h:outputText value="* Field required." 
+                                  style="font-weight: bold;" /> 
+
+                </p:toolbarGroup>
             </p:toolbar>                
             <p:panel style="margin-top: 1px;margin-bottom: 1px;">
-                <h:panelGrid columns="2" style="width: 85%">
+                <h:panelGrid columns="2" >
 
-                    <h:outputLabel value="Type" style="font-weight: bold" 
+                    <p:outputLabel value="Type" style="font-weight: bold" 
                                    for="contactType" />
                     <p:selectOneMenu value="#{clientManager.selectedContact.type}"
                                      id="contactType" 
                                      maxlength="50"
+                                     required="true"
                                      validator="contactValidator">
                         <p:ajax
                             event="change"
@@ -67,9 +75,10 @@ Email: info@dpbennett.com.jm
 
                     </p:selectOneMenu>
 
-                    <h:outputLabel value="Title" style="font-weight: bold;"
+                    <p:outputLabel value="Title" style="font-weight: bold;"
                                    for="contactTitle" />
                     <p:selectOneMenu value="#{clientManager.selectedContact.title}" 
+                                     required="true"
                                      id="contactTitle">
                         <p:ajax
                             event="change"
@@ -82,8 +91,7 @@ Email: info@dpbennett.com.jm
                     </p:selectOneMenu>
                     <ui:remove>
                         <p:inputText value="#{clientManager.selectedContact.title}"
-                                     maxlength="50"
-                                     style="width: 100%" >
+                                     maxlength="50" >
                             <p:ajax event="change"
                                     global="true"                                    
                                     listener="#{clientManager.updateContact}"
@@ -91,85 +99,86 @@ Email: info@dpbennett.com.jm
                         </p:inputText>         
                     </ui:remove>
 
-                    <h:outputLabel value="Firstname" style="font-weight: bold" 
+                    <p:outputLabel value="First name" style="font-weight: bold" 
                                    for="contactFirstname" />
                     <p:inputText value="#{clientManager.selectedContact.firstName}"
                                  id="contactFirstname"
                                  maxlength="50"
-                                 validator="contactValidator"
-                                 style="width: 100%" >
+                                 required="true"
+                                 requiredMessage="First Name Required"
+                                 validator="contactValidator" >
                         <p:ajax event="change"
                                 global="true"                                    
                                 listener="#{clientManager.updateContact}"
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputLabel value="Lastname" style="font-weight: bold"
+                    <p:outputLabel value="Last name" style="font-weight: bold"
                                    for="contactLastname" />                    
                     <p:inputText value="#{clientManager.selectedContact.lastName}"
                                  id="contactLastname"
                                  maxlength="50"
-                                 validator="contactValidator"
-                                 style="width: 100%" >
+                                 required="true"
+                                 requiredMessage="Last Name Required"
+                                 validator="contactValidator" >
                         <p:ajax event="change"
                                 global="true"                                    
                                 listener="#{clientManager.updateContact}"
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputLabel value="Position" for="contactPosition" />
+                    <p:outputLabel value="Position" for="contactPosition" />
                     <p:inputText value="#{clientManager.selectedContact.position}"
                                  id="contactPosition"
-                                 maxlength="50"
-                                 style="width: 100%" >
+                                 maxlength="50" >
                         <p:ajax event="change"
                                 global="true"                                    
                                 listener="#{clientManager.updateContact}"
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputLabel value="Phone" style="font-weight: bold" 
+                    <p:outputLabel value="Phone" style="font-weight: bold" 
                                    for="contactPhone" />
                     <p:inputText value="#{clientManager.selectedContact.mainPhoneNumber.localNumber}"
                                  id="contactPhone"
                                  maxlength="50"
-                                 validator="contactValidator"
-                                 style="width: 100%" >
+                                 required="true"
+                                 requiredMessage="Phone Required"
+                                 validator="contactValidator" >
                         <p:ajax event="change"
                                 global="true"                                    
                                 listener="#{clientManager.updateContact}"
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputLabel value="Email" style="font-weight: bold" 
+                    <p:outputLabel value="Email" style="font-weight: bold" 
                                    for="contactEmail" />
                     <p:inputText value="#{clientManager.selectedContact.internet.email1}"
                                  id="contactEmail"
+                                 required="true"
+                                 requiredMessage="Email Required"
                                  validator="contactValidator"
-                                 maxlength="50"
-                                 style="width: 100%" >                
+                                 maxlength="50" >                
                         <p:ajax event="change"
                                 global="true"                                    
                                 listener="#{clientManager.updateContact}"
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputLabel value="Website" for="contactWebsite" />
+                    <p:outputLabel value="Website" for="contactWebsite" />
                     <p:inputText value="#{clientManager.selectedContact.internet.website1}"
                                  id="contactWebsite"
-                                 maxlength="50"
-                                 style="width: 100%" >
+                                 maxlength="50" >
                         <p:ajax event="change"
                                 global="true"                                    
                                 listener="#{clientManager.updateContact}"
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputLabel value="Fax" for="contactFax" />
+                    <p:outputLabel value="Fax" for="contactFax" />
                     <p:inputText value="#{clientManager.selectedContact.mainFaxNumber.localNumber}"
                                  id="contactFax"
-                                 maxlength="50"
-                                 style="width: 100%">
+                                 maxlength="50" >
                         <p:ajax event="change"
                                 global="true"                                    
                                 listener="#{clientManager.updateContact}"
@@ -190,6 +199,13 @@ Email: info@dpbennett.com.jm
                                      icon="pi pi-times"
                                      oncomplete="PF('contactFormDialog').hide();"
                                      process="@this" />
+                </p:toolbarGroup>
+
+                <p:toolbarGroup align="right">
+
+                    <h:outputText value="* Field required." 
+                                  style="font-weight: bold;" /> 
+
                 </p:toolbarGroup>
             </p:toolbar>         
 

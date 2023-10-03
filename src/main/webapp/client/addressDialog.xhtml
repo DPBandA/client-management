@@ -23,9 +23,9 @@ Email: info@dpbennett.com.jm
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">   
-    
+
     <h:form id="addressForm">
-        <p:dialog width="600"                  
+        <p:dialog width="400"                  
                   height="fit-content"
                   draggable="true"
                   closable="false"
@@ -46,12 +46,20 @@ Email: info@dpbennett.com.jm
                                      oncomplete="PF('addressFormDialog').hide();"
                                      process="@this" />         
                 </p:toolbarGroup>
+
+                <p:toolbarGroup align="right">
+
+                    <h:outputText value="* Field required." 
+                                  style="font-weight: bold;" /> 
+
+                </p:toolbarGroup>
             </p:toolbar>
             <p:panel style="margin-top: 1px;margin-bottom: 1px;">
-                <h:panelGrid columns="2" style="width: 85%">       
+                <h:panelGrid columns="2" >       
                     <p:outputLabel value="Type" style="font-weight: bold" for="addressType" />
                     <p:selectOneMenu value="#{clientManager.selectedAddress.type}"
                                      id="addressType"
+                                     required="true"
                                      validator="addressLineValidator"
                                      editable="true" >
                         <p:ajax
@@ -64,48 +72,51 @@ Email: info@dpbennett.com.jm
                         <f:selectItem itemLabel="General" itemValue="General" />
                     </p:selectOneMenu>
 
-                    <p:outputLabel value="Address (line 1)" style="font-weight: bold" 
+                    <p:outputLabel value="Address line 1" style="font-weight: bold" 
                                    for="addressLine1" />
                     <p:inputText value="#{clientManager.selectedAddress.addressLine1}"
                                  id="addressLine1"
                                  maxlength="50"
-                                 validator="addressLineValidator"
-                                 style="width: 90%;">
+                                 required="true"
+                                 requiredMessage="Address Line 1 Required"
+                                 validator="addressLineValidator" >
                         <p:ajax event="change"
                                 global="true"
                                 listener="#{clientManager.updateAddress}"
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputLabel value="Address (line 2)" for="addressLine2" />
+                    <p:outputLabel value="Address line 2" />
                     <p:inputText value="#{clientManager.selectedAddress.addressLine2}"
                                  id="addressLine2"     
-                                 maxlength="50"
-                                 style="width: 90%" >
+                                 maxlength="50" >
                         <p:ajax event="change"
                                 global="true"
                                 listener="#{clientManager.updateAddress}"
                                 process="@this"/>
                     </p:inputText>                
 
-                    <h:outputLabel value="Nearest City/Town" style="font-weight: bold" for="addressCity" />
+                    <p:outputLabel value="Nearest City/Town" style="font-weight: bold" 
+                                   for="addressCity" />
                     <p:inputText value="#{clientManager.selectedAddress.city}"
                                  id="addressCity"
                                  maxlength="50"
-                                 validator="addressLineValidator"
-                                 style="width: 90%" >
+                                 required="true"
+                                 requiredMessage="Nearest City/Town Required"
+                                 validator="addressLineValidator" >
                         <p:ajax event="change"
                                 global="true"
                                 listener="#{clientManager.updateAddress}"
                                 process="@this"/>
                     </p:inputText>
 
-                    <h:outputLabel value="Parish/State/Province" style="font-weight: bold" 
+                    <p:outputLabel value="Parish/State/Province" style="font-weight: bold" 
                                    for="parishStateProvince" />
                     <h:panelGroup>
                         <p:selectOneMenu value="#{clientManager.selectedAddress.stateOrProvince}"   
                                          id="parishStateProvince"
                                          maxlength="50"
+                                         required="true"
                                          validator="addressLineValidator"
                                          editable="true">
                             <p:ajax
@@ -154,8 +165,15 @@ Email: info@dpbennett.com.jm
                                      oncomplete="PF('addressFormDialog').hide();"
                                      process="@this" />         
                 </p:toolbarGroup>
+
+                <p:toolbarGroup align="right">
+
+                    <h:outputText value="* Field required." 
+                                  style="font-weight: bold;" /> 
+
+                </p:toolbarGroup>
             </p:toolbar>
-            
+
         </p:dialog>
     </h:form>    
 </html>

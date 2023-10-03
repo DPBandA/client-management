@@ -42,7 +42,8 @@ Email: info@dpbennett.com.jm
     <p:dataTable id="addressesTable"
                  var="address"
                  paginator="true"   
-                 reflow="false"
+                 rows="15"
+                 reflow="true"
                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                  value="#{clientManager.addressesModel}">
 

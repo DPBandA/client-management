@@ -25,7 +25,7 @@ Email: info@dpbennett.com.jm
       xmlns:ui="http://java.sun.com/jsf/facelets"> 
     <h:panelGrid columns="2" cellspacing="10">
 
-        <h:outputLabel value="Account Id" for="account" /> 
+        <p:outputLabel value="Account Id" for="account" /> 
         <p:autoComplete forceSelection="true"
                         id="account"
                         var="account"                                
@@ -42,7 +42,7 @@ Email: info@dpbennett.com.jm
 
         </p:autoComplete>
 
-        <h:outputLabel value="Billing address" style="font-weight: bold" 
+        <p:outputLabel value="Billing address" style="font-weight: bold" 
                        for="billingAddress" />    
         <p:autoComplete id="billingAddress"
                         value="#{clientManager.selectedClient.billingAddress}"
@@ -50,6 +50,8 @@ Email: info@dpbennett.com.jm
                         forceSelection="true"
                         size="45"
                         converter="clientAddressConverter" 
+                        required="true"
+                        requiredMessage="Billing Address Required"
                         validator="addressValidator"
                         var="address"  
                         scrollHeight="200"
@@ -64,7 +66,7 @@ Email: info@dpbennett.com.jm
 
         </p:autoComplete>
 
-        <h:outputLabel value="Billing contact" style="font-weight: bold"
+        <p:outputLabel value="Billing contact" style="font-weight: bold"
                        for="billingContact" />  
         <p:autoComplete id="billingContact"
                         value="#{clientManager.selectedClient.billingContact}"
@@ -72,6 +74,8 @@ Email: info@dpbennett.com.jm
                         forceSelection="true"
                         scrollHeight="200"
                         converter="clientContactConverter" 
+                        required="true"
+                        requiredMessage="Billing Contact Required"
                         validator="contactValidator"
                         var="contact"                        
                         itemValue="#{contact}"
@@ -85,11 +89,13 @@ Email: info@dpbennett.com.jm
 
         </p:autoComplete>
 
-        <h:outputLabel value="Credit limit ($)" style="font-weight: bold"
+        <p:outputLabel value="Credit limit ($)" style="font-weight: bold"
                        for="creditLimit" />
         <p:inputText value="#{clientManager.selectedClient.creditLimit}"
                      id="creditLimit"
                      styleClass="number-field"
+                     required="true"
+                     requiredMessage="Credit Limit Required"
                      converterMessage="Please enter a valid credit limit."
                      maxlength="15" >
 
@@ -99,8 +105,8 @@ Email: info@dpbennett.com.jm
                     listener="#{clientManager.updateFinancialAccount}" />
 
         </p:inputText>
-        
-        <h:outputLabel value="Taxpayer Registration Number (TRN)" 
+
+        <p:outputLabel value="Taxpayer Registration Number (TRN)" 
                        for="trn" />        
         <p:inputText value="#{clientManager.selectedClient.taxRegistrationNumber}"
                      id="trn"
@@ -110,8 +116,8 @@ Email: info@dpbennett.com.jm
                     listener="#{clientManager.updateClient}"
                     process="@this"/>
         </p:inputText>
-        
-        <h:outputLabel value="Default tax (%/$)" style="font-weight: bold" 
+
+        <p:outputLabel value="Default tax (%/$)" style="font-weight: bold" 
                        for="tax" />
         <p:autoComplete id="tax"  
                         var="tax"
@@ -125,6 +131,8 @@ Email: info@dpbennett.com.jm
                         itemValue="#{tax}"
                         itemLabel="#{tax.name}"
                         converter="taxConverter"
+                        required="true"
+                        requiredMessage="Default Tax Required"
                         validator="businessEntityValidator"
                         completeMethod="#{clientManager.completeTax}" >
 
@@ -133,7 +141,7 @@ Email: info@dpbennett.com.jm
 
         </p:autoComplete>
 
-        <h:outputLabel value="Discount (%/$)" style="font-weight: bold" 
+        <p:outputLabel value="Discount (%/$)" style="font-weight: bold" 
                        for="discount" />
         <p:autoComplete id="discount"  
                         var="discount"
@@ -147,6 +155,8 @@ Email: info@dpbennett.com.jm
                         itemValue="#{discount}"
                         itemLabel="#{discount.name}"
                         converter="discountConverter"
+                        required="true"
+                        requiredMessage="Discount Required"
                         validator="businessEntityValidator"
                         completeMethod="#{clientManager.completeDiscount}" >
 
@@ -159,6 +169,7 @@ Email: info@dpbennett.com.jm
         <h:panelGroup>
             <p:selectBooleanCheckbox style="vertical-align: middle"
                                      id="taxExempt"
+                                     required="true"
                                      value="#{clientManager.selectedClient.taxExempt}" >
 
                 <p:ajax listener="#{clientManager.updateFinancialAccount}"

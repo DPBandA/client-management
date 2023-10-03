@@ -26,13 +26,7 @@ Email: info@dpbennett.com.jm
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <p:toolbar>
-        <p:toolbarGroup align="left" >   
-            <ui:remove>
-                <p:commandButton value="Close"
-                                 actionListener="#{clientManager.closeClientsTab}"
-                                 icon="pi pi-times" />
-                <p:spacer width="10" />
-            </ui:remove>
+        <p:toolbarGroup align="left" >            
             <p:commandButton 
                 value="New"
                 icon="pi pi-plus" 
@@ -49,7 +43,6 @@ Email: info@dpbennett.com.jm
             <p:spacer width="20" />
             <p:inputText id="clientSearchText" 
                          placeholder="Enter search text"
-                         style="width:200px" 
                          value="#{clientManager.clientSearchText}" >
 
                 <p:ajax event="keyup"                            
@@ -65,7 +58,7 @@ Email: info@dpbennett.com.jm
                         rendered="#{clientManager.user.can('ViewAllClients')}" >
             <p:outputLabel value="Active clients only" for="activeClientsOnly"/>  
             <p:spacer width="5" />
-            <h:panelGroup>
+            <h:panelGroup style="margin-top: 5px;">
                 <p:selectBooleanCheckbox style="vertical-align: middle"
                                          id="activeClientsOnly"
                                          value="#{clientManager.isActiveClientsOnly}" >
@@ -154,12 +147,6 @@ Email: info@dpbennett.com.jm
 
     <p:toolbar>
         <p:toolbarGroup align="left" >   
-            <ui:remove>
-                <p:commandButton value="Close"
-                                 actionListener="#{clientManager.closeClientsTab}"
-                                 icon="pi pi-times" />
-                <p:spacer width="10" />
-            </ui:remove>
             <p:commandButton 
                 value="New"
                 icon="pi pi-plus" 
