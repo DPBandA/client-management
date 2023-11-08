@@ -46,7 +46,7 @@ Email: info@dpbennett.com.jm
                          value="#{clientManager.clientSearchText}" >
 
                 <p:ajax event="keyup"                            
-                        global="false"
+                        global="true"
                         update=":appForm:mainTabView:clientsTable"
                         listener="#{clientManager.doClientSearch}"
                         process="@this"/>
