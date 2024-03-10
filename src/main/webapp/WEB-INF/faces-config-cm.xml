@@ -31,7 +31,7 @@
             <from-outcome>clientDialog</from-outcome>
             <to-view-id>/client/clientDialog.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
+    </navigation-rule>   
       
     <managed-bean>
         <managed-bean-name>clientManager</managed-bean-name>
