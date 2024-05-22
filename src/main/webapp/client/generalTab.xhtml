@@ -72,8 +72,8 @@ Email: info@dpbennett.com.jm
 
             <f:selectItems  value="#{systemManager.identificationTypeList}"
                             var="identificationType"                            
-                            itemValue="#{progress}"
-                            itemLabel="#{progress}"/>
+                            itemValue="#{type}"
+                            itemLabel="#{type}"/>
 
             <p:ajax listener="#{clientManager.updateClient}"
                     global="true"
