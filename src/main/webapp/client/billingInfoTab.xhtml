@@ -129,11 +129,13 @@ Email: info@dpbennett.com.jm
                         styleClass="right-inputfield" 
                         itemValue="#{tax}"
                         itemLabel="#{tax.name}"
-                        converter="taxConverter"
                         required="true"
                         requiredMessage="Default Tax Required"
                         validator="businessEntityValidator"
-                        completeMethod="#{clientManager.completeTax}" >
+                        completeMethod="#{financeManager.completeTax}" >
+
+            <f:converter converterId="taxConverter"/>
+            <f:attribute name="em" value="#{financeManager.entityManager1}"/>
 
             <p:ajax event="itemSelect"
                     listener="#{clientManager.updateFinancialAccount}" />
@@ -153,11 +155,13 @@ Email: info@dpbennett.com.jm
                         styleClass="right-inputfield" 
                         itemValue="#{discount}"
                         itemLabel="#{discount.name}"
-                        converter="discountConverter"
                         required="true"
                         requiredMessage="Discount Required"
                         validator="businessEntityValidator"
-                        completeMethod="#{clientManager.completeDiscount}" >
+                        completeMethod="#{financeManager.completeDiscount}" >
+            
+            <f:converter converterId="discountConverter"/>
+            <f:attribute name="em" value="#{financeManager.entityManager1}"/>
 
             <p:ajax event="itemSelect"
                     listener="#{clientManager.updateFinancialAccount}" />
