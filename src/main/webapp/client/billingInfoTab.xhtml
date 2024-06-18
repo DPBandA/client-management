@@ -30,11 +30,13 @@ Email: info@dpbennett.com.jm
                         id="account"
                         var="account"                                
                         scrollHeight="200" 
-                        converter="accPacCustomerConverter"
                         value="#{clientManager.selectedClient.financialAccount}"  
                         itemLabel="#{account.idCust} (#{account.customerName})"
                         itemValue="#{account}"
-                        completeMethod="#{clientManager.completeAccPacClient}" >      
+                        completeMethod="#{clientManager.completeAccPacClient}" >    
+
+            <f:converter converterId="accPacCustomerConverter"/>
+            <f:attribute name="em" value="#{clientManager.entityManager2}"/>
 
             <p:ajax event="itemSelect"
                     update="account,creditLimit"
@@ -48,7 +50,6 @@ Email: info@dpbennett.com.jm
                         value="#{clientManager.selectedClient.billingAddress}"
                         dropdown="true"
                         forceSelection="true"
-                        converter="clientAddressConverter" 
                         required="true"
                         requiredMessage="Billing Address Required"
                         validator="addressValidator"
@@ -58,7 +59,10 @@ Email: info@dpbennett.com.jm
                         itemLabel="#{address.name}" 
                         completeMethod="#{clientManager.completeClientAddress}">
 
-            <f:attribute name="currentClient" value="#{clientManager.selectedClient}" />
+            <f:converter converterId="clientAddressConverter"/>
+            
+            <f:attribute name="currentClient" value="#{clientManager.selectedClient}" />            
+            <f:attribute name="em" value="#{clientManager.entityManager1}"/>
 
             <p:ajax event="itemSelect"
                     listener="#{clientManager.updateFinancialAccount}" />  
@@ -72,7 +76,6 @@ Email: info@dpbennett.com.jm
                         dropdown="true"
                         forceSelection="true"
                         scrollHeight="200"
-                        converter="clientContactConverter" 
                         required="true"
                         requiredMessage="Billing Contact Required"
                         validator="contactValidator"
@@ -81,6 +84,9 @@ Email: info@dpbennett.com.jm
                         itemLabel="#{contact.name}" 
                         completeMethod="#{clientManager.completeClientContact}">
 
+            <f:converter converterId="clientContactConverter"/>
+            
+            <f:attribute name="em" value="#{clientManager.entityManager1}"/>            
             <f:attribute name="currentClient" value="#{clientManager.selectedClient}" />
 
             <p:ajax event="itemSelect"
@@ -159,7 +165,7 @@ Email: info@dpbennett.com.jm
                         requiredMessage="Discount Required"
                         validator="businessEntityValidator"
                         completeMethod="#{financeManager.completeDiscount}" >
-            
+
             <f:converter converterId="discountConverter"/>
             <f:attribute name="em" value="#{financeManager.entityManager1}"/>
 
