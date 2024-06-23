@@ -77,7 +77,7 @@ Email: info@dpbennett.com.jm
                     <ui:include src="contactsTab.xhtml" />
                 </p:tab>
                 <p:tab title="Billing Information" 
-                       rendered="#{clientManager.user.employee.department.privilege.canEditInvoicingAndPayment}" >
+                       rendered="#{clientManager.user.can('EditInvoicingAndPayment')}" >
                     <ui:include src="billingInfoTab.xhtml" />
                 </p:tab>
                 <p:tab title="Tracking">
