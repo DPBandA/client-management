@@ -1,6 +1,6 @@
 <!--
 Client Management 
-Copyright (C) 2024  D P Bennett & Associates Limited
+Copyright (C) 2025  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -37,7 +37,7 @@ Email: info@dpbennett.com.jm
 
                 <p:ajax event="dialogReturn" 
                         listener="#{clientManager.doClientSearch}"
-                        update=":appForm:mainTabView:clientsTable"/>
+                        update=":mainTabViewForm:mainTabView:clientsTable"/>
 
             </p:commandButton>
             <p:spacer width="20" />
@@ -48,7 +48,7 @@ Email: info@dpbennett.com.jm
                 <p:commandButton id="clientSearchButton"
                                  class="search-button"   
                                  actionListener="#{clientManager.doClientSearch}"
-                                 update=":appForm:mainTabView:clientsTable"
+                                 update=":mainTabViewForm:mainTabView:clientsTable"
                                  icon="pi pi-search"
                                  process="@form" />
             </h:panelGroup>
@@ -62,7 +62,7 @@ Email: info@dpbennett.com.jm
                 <p:selectBooleanCheckbox style="vertical-align: middle"
                                          id="activeClientsOnly"
                                          value="#{clientManager.isActiveClientsOnly}" >
-                    <p:ajax  update=":appForm:mainTabView:clientsTable"
+                    <p:ajax  update=":mainTabViewForm:mainTabView:clientsTable"
                              listener="#{clientManager.doClientSearch}"
                              event="change"                                      
                              process="@this"/>
@@ -149,7 +149,7 @@ Email: info@dpbennett.com.jm
                                              target="#{clientManager.selectedClient}" />
 
                 <p:ajax event="dialogReturn" 
-                        update=":appForm:mainTabView:clientsTable"/>
+                        update=":mainTabViewForm:mainTabView:clientsTable"/>
 
             </p:commandButton>
         </p:column>
@@ -166,7 +166,7 @@ Email: info@dpbennett.com.jm
                 title="Add a new client to the client database" >
 
                 <p:ajax event="dialogReturn" 
-                        update=":appForm:mainTabView:clientsTable"/>
+                        update=":mainTabViewForm:mainTabView:clientsTable"/>
 
             </p:commandButton>
 

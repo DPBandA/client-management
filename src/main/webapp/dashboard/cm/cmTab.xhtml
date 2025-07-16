@@ -1,5 +1,5 @@
 <!--
-Client Management (CM)
+Client Management (CM) 
 Copyright (C) 2025  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
@@ -20,16 +20,13 @@ Email: info@dpbennett.com.jm
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
 
-    <p:menubar id="main_menubar" style="width: 100%;" autoDisplay="false">
+    <p:toolbar style="margin-bottom: 1px;">
 
-        <p:submenu label="Clients" 
-                   icon="pi pi-users" >
+        <p:toolbarGroup align="left" >
 
-            <p:menuitem
+            <p:commandButton
                 actionListener="#{clientManager.createNewClient}"                
                 rendered="#{systemManager.user.can('AddClient')}"
                 global="true" 
@@ -41,25 +38,29 @@ Email: info@dpbennett.com.jm
                 <p:ajax event="dialogReturn" 
                         update=":mainTabViewForm:mainTabView:clientsTable" />
 
-            </p:menuitem>
+            </p:commandButton>
 
-            <p:divider />
+        </p:toolbarGroup>
 
-            <p:menuitem value="Client Management"
-                        title="Open the Clients tab"
-                        icon="pi pi-users"
-                        actionListener="#{clientManager.openClientsTab}" 
-                        process="@this" />
-          
-        </p:submenu>
+        <p:toolbarGroup align="right">            
+            <p:menuButton value="Tools" >  
 
-        <p:menuitem 
-            actionListener="#{systemManager.mainTabView.openTab('System Administration')}" 
-            title="System administration" 
-            rendered="#{systemManager.user.hasModule('systemManager')}"
-            value="System Administration" 
-            icon="pi pi-server" />    
+                <p:menuitem value="Client Management"
+                            title="Open the Clients tab"
+                            icon="pi pi-users"
+                            actionListener="#{clientManager.openClientsTab}" 
+                            process="@this" />           
 
-    </p:menubar>
+            </p:menuButton>         
+        </p:toolbarGroup>
+
+    </p:toolbar>
+
+    <ui:remove>
+        <ui:include src="search.xhtml"/>   
+    </ui:remove>
+
 
 </html>
+
+
