@@ -70,7 +70,7 @@ Email: info@dpbennett.com.jm
                          disabled="#{!clientManager.user.can('AddClient')}"
                          value="#{clientManager.selectedClient.identificationType}">
 
-            <f:selectItems  value="#{systemManager.identificationTypeList}"
+            <f:selectItems  value="#{humanResourceManager.identificationTypeList}"
                             var="identificationType"                            
                             itemValue="#{type}"
                             itemLabel="#{type}"/>
@@ -104,7 +104,7 @@ Email: info@dpbennett.com.jm
                 listener="#{clientManager.updateClient}"
                 process="@this" />
 
-            <f:selectItems value="#{systemManager.typesOfBusinessList}" />
+            <f:selectItems value="#{humanResourceManager.typesOfBusinessList}" />
 
         </p:selectOneMenu>
         <ui:remove>
