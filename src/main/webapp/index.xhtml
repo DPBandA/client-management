@@ -155,8 +155,8 @@ Email: info@dpbennett.com.jm
                                 <p:divider style="margin-top: 0;"/>
 
                                 <p:accordionPanel id="dashboardAccordion" 
-                                                  value="#{clientManager.dashboard.tabs}" 
-                                                  activeIndex="#{clientManager.dashboard.tabIndex}"
+                                                  value="#{systemManager.dashboard.tabs}" 
+                                                  activeIndex="#{systemManager.dashboard.tabIndex}"
                                                   var="t"   
                                                   widgetVar="dashboardAccordionVar"
                                                   rendered="true"
@@ -166,11 +166,11 @@ Email: info@dpbennett.com.jm
                                             immediate="true"
                                             process="@this"
                                             update=":mainTabViewForm"
-                                            listener="#{clientManager.onDashboardTabChange}" />
+                                            listener="#{systemManager.onDashboardTabChange}" />
 
                                     <p:tab title="#{t.name}" >
 
-                                        <p:defaultCommand target="#{clientManager.defaultCommandTarget}" />
+                                        <p:defaultCommand target="#{systemManager.defaultCommandTarget}" />
 
                                         <h:panelGroup rendered="#{t.id == 'Client Management'}" >
                                             <ui:include src="dashboard/cm/cmTab.xhtml" />                                                                
@@ -203,9 +203,9 @@ Email: info@dpbennett.com.jm
                                         <ui:include src="menubar.xhtml" /> 
 
                                         <p:tabView id="mainTabView"  
-                                                   rendered="#{clientManager.mainTabView.render}"
-                                                   value="#{clientManager.mainTabView.tabs}" 
-                                                   activeIndex="#{clientManager.dashboard.tabIndex}"
+                                                   rendered="#{systemManager.mainTabView.render}"
+                                                   value="#{systemManager.mainTabView.tabs}" 
+                                                   activeIndex="#{systemManager.mainTabView.tabIndex}"
                                                    var="t" 
                                                    dynamic="false"
                                                    widgetVar="mainTabViewVar">
@@ -213,17 +213,17 @@ Email: info@dpbennett.com.jm
                                             <p:ajax event="tabClose" 
                                                     immediate="true"
                                                     process="@this"
-                                                    listener="#{clientManager.onMainViewTabClose}" />  
+                                                    listener="#{systemManager.onMainViewTabClose}" />  
 
                                             <p:ajax event="tabChange" 
                                                     process="@form"      
                                                     update=":mainTabViewForm"
-                                                    listener="#{clientManager.onMainViewTabChange}" />  
+                                                    listener="#{systemManager.onMainViewTabChange}" />  
 
 
                                             <p:tab title="#{t.name}" closable="true"  >
 
-                                                <p:defaultCommand target="#{clientManager.defaultCommandTarget}" />
+                                                <p:defaultCommand target="#{systemManager.defaultCommandTarget}" />
 
                                                 <h:panelGroup rendered="#{t.id == 'Clients'}" >
                                                     <ui:include src="client/clientsTab.xhtml" />                                                                
