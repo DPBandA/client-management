@@ -27,6 +27,7 @@ Email: info@dpbennett.com.jm
 
         <p:outputLabel value="Account Id" for="account" /> 
         <p:autoComplete forceSelection="true"
+                        escape="false"
                         id="account"
                         var="account"                                
                         scrollHeight="200" 
@@ -47,6 +48,7 @@ Email: info@dpbennett.com.jm
         <p:outputLabel value="Billing address" style="font-weight: bold" 
                        for="billingAddress" />    
         <p:autoComplete id="billingAddress"
+                        escape="false"
                         value="#{clientManager.selectedClient.billingAddress}"
                         dropdown="true"
                         forceSelection="true"
@@ -72,6 +74,7 @@ Email: info@dpbennett.com.jm
         <p:outputLabel value="Billing contact" style="font-weight: bold"
                        for="billingContact" />  
         <p:autoComplete id="billingContact"
+                        escape="false"
                         value="#{clientManager.selectedClient.billingContact}"
                         dropdown="true"
                         forceSelection="true"
@@ -125,6 +128,7 @@ Email: info@dpbennett.com.jm
         <p:outputLabel value="Default tax (%/$)" style="font-weight: bold" 
                        for="tax" />
         <p:autoComplete id="tax"  
+                        escape="false"
                         var="tax"
                         forceSelection="true"      
                         dropdown="true"
@@ -151,6 +155,7 @@ Email: info@dpbennett.com.jm
         <p:outputLabel value="Discount (%/$)" style="font-weight: bold" 
                        for="discount" />
         <p:autoComplete id="discount"  
+                        escape="false"
                         var="discount"
                         forceSelection="true"      
                         dropdown="true"
