@@ -1,0 +1,206 @@
+<!--
+Client Management (CM)
+Copyright (C) 2026  D P Bennett & Associates Limited
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+Email: info@dpbennett.com.jm
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"   
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"> 
+    
+    <h:panelGrid columns="2" cellspacing="10">
+
+        <p:outputLabel value="Account Id" for="account" /> 
+        <p:autoComplete forceSelection="true"
+                        escape="false"
+                        id="account"
+                        var="account"                                
+                        scrollHeight="200" 
+                        value="#{clientManager.selectedClient.financialAccount}"  
+                        itemLabel="#{account.idCust} (#{account.customerName})"
+                        itemValue="#{account}"
+                        completeMethod="#{clientManager.completeAccPacClient}" >    
+
+            <f:converter converterId="accPacCustomerConverter"/>
+            <f:attribute name="em" value="#{clientManager.entityManager2}"/>
+
+            <p:ajax event="itemSelect"
+                    update="account,creditLimit"
+                    listener="#{clientManager.updateFinancialAccountId}" />
+
+        </p:autoComplete>
+
+        <p:outputLabel value="Billing address" style="font-weight: bold" 
+                       for="billingAddress" />    
+        <p:autoComplete id="billingAddress"
+                        escape="false"
+                        value="#{clientManager.selectedClient.billingAddress}"
+                        dropdown="true"
+                        forceSelection="true"
+                        required="true"
+                        requiredMessage="Billing Address Required"
+                        validator="addressValidator"
+                        var="address"  
+                        scrollHeight="200"
+                        itemValue="#{address}"
+                        itemLabel="#{address.name}" 
+                        completeMethod="#{clientManager.completeClientAddress}">
+
+            <f:converter converterId="clientAddressConverter"/>
+            
+            <f:attribute name="currentClient" value="#{clientManager.selectedClient}" />            
+            <f:attribute name="em" value="#{clientManager.entityManager1}"/>
+
+            <p:ajax event="itemSelect"
+                    listener="#{clientManager.updateFinancialAccount}" />  
+
+        </p:autoComplete>
+
+        <p:outputLabel value="Billing contact" style="font-weight: bold"
+                       for="billingContact" />  
+        <p:autoComplete id="billingContact"
+                        escape="false"
+                        value="#{clientManager.selectedClient.billingContact}"
+                        dropdown="true"
+                        forceSelection="true"
+                        scrollHeight="200"
+                        required="true"
+                        requiredMessage="Billing Contact Required"
+                        validator="contactValidator"
+                        var="contact"                        
+                        itemValue="#{contact}"
+                        itemLabel="#{contact.name}" 
+                        completeMethod="#{clientManager.completeClientContact}">
+
+            <f:converter converterId="clientContactConverter"/>
+            
+            <f:attribute name="em" value="#{clientManager.entityManager1}"/>            
+            <f:attribute name="currentClient" value="#{clientManager.selectedClient}" />
+
+            <p:ajax event="itemSelect"
+                    listener="#{clientManager.updateFinancialAccount}" />   
+
+        </p:autoComplete>
+
+        <p:outputLabel value="Credit limit ($)" style="font-weight: bold"
+                       for="creditLimit" />
+        <p:inputText value="#{clientManager.selectedClient.creditLimit}"
+                     id="creditLimit"
+                     styleClass="number-field"
+                     required="true"
+                     requiredMessage="Credit Limit Required"
+                     converterMessage="Please enter a valid credit limit."
+                     maxlength="15" >
+
+            <f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+
+            <p:ajax event="change"
+                    listener="#{clientManager.updateFinancialAccount}" />
+
+        </p:inputText>
+
+        <p:outputLabel value="Taxpayer Registration Number (TRN)" 
+                       for="trn" />        
+        <p:inputText value="#{clientManager.selectedClient.taxRegistrationNumber}"
+                     id="trn"
+                     disabled="#{!clientManager.user.can('AddClient')}" >
+            <p:ajax event="change"                    
+                    global="true"                   
+                    listener="#{clientManager.updateClient}"
+                    process="@this"/>
+        </p:inputText>
+
+        <p:outputLabel value="Default tax (%/$)" style="font-weight: bold" 
+                       for="tax" />
+        <p:autoComplete id="tax"  
+                        escape="false"
+                        var="tax"
+                        forceSelection="true"      
+                        dropdown="true"
+                        scrollHeight="200" 
+                        maxlength="40"
+                        value="#{clientManager.selectedClient.defaultTax}"
+                        title="#{clientManager.selectedClient.defaultTax}"
+                        styleClass="right-inputfield" 
+                        itemValue="#{tax}"
+                        itemLabel="#{tax.name}"
+                        required="true"
+                        requiredMessage="Default Tax Required"
+                        validator="businessEntityValidator"
+                        completeMethod="#{financeManager.completeTax}" >
+
+            <f:converter converterId="taxConverter"/>
+            <f:attribute name="em" value="#{financeManager.entityManager1}"/>
+
+            <p:ajax event="itemSelect"
+                    listener="#{clientManager.updateFinancialAccount}" />
+
+        </p:autoComplete>
+
+        <p:outputLabel value="Discount (%/$)" style="font-weight: bold" 
+                       for="discount" />
+        <p:autoComplete id="discount"  
+                        escape="false"
+                        var="discount"
+                        forceSelection="true"      
+                        dropdown="true"
+                        scrollHeight="200" 
+                        maxlength="40"
+                        value="#{clientManager.selectedClient.discount}"
+                        title="#{clientManager.selectedClient.discount}"
+                        styleClass="right-inputfield" 
+                        itemValue="#{discount}"
+                        itemLabel="#{discount.name}"
+                        required="true"
+                        requiredMessage="Discount Required"
+                        validator="businessEntityValidator"
+                        completeMethod="#{financeManager.completeDiscount}" >
+
+            <f:converter converterId="discountConverter"/>
+            <f:attribute name="em" value="#{financeManager.entityManager1}"/>
+
+            <p:ajax event="itemSelect"
+                    listener="#{clientManager.updateFinancialAccount}" />
+
+        </p:autoComplete>
+
+        <p:outputLabel for="taxExempt" value="Tax exempt" style="font-weight: bold;" />  
+        <h:panelGroup>
+            <p:selectBooleanCheckbox style="vertical-align: middle"
+                                     id="taxExempt"
+                                     required="true"
+                                     value="#{clientManager.selectedClient.taxExempt}" >
+
+                <p:ajax listener="#{clientManager.updateFinancialAccount}"
+                        event="change"                                      
+                        process="@this"/>
+
+            </p:selectBooleanCheckbox>     
+
+            <p:tooltip for="taxExempt" value="Check to activate tax exempt" 
+                       showEffect="fade" hideEffect="fade" />            
+        </h:panelGroup>
+
+    </h:panelGrid>
+</html>
+
+
