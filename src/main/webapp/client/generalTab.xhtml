@@ -1,6 +1,6 @@
 <!--
-Client Management 
-Copyright (C) 2024  D P Bennett & Associates Limited
+Client Management (CM) 
+Copyright (C) 2026  D P Bennett & Associates Limited
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -53,7 +53,7 @@ Email: info@dpbennett.com.jm
                      required="true"
                      requiredMessage="Name Required"
                      validator="clientValidator">
-            
+
             <f:attribute name="isNewClient" value="#{clientManager.isNewClient}" />
 
             <p:ajax event="change"
@@ -61,6 +61,7 @@ Email: info@dpbennett.com.jm
                     update="clientName"
                     listener="#{clientManager.updateClientName}"
                     process="@this"/>
+            
         </p:inputText>     
         <h:outputText value="" />
 
@@ -86,10 +87,12 @@ Email: info@dpbennett.com.jm
         <p:inputText value="#{clientManager.selectedClient.identification}"
                      id="identification"
                      disabled="#{!clientManager.user.can('AddClient')}" >
+            
             <p:ajax event="change"                    
                     global="true"                   
                     listener="#{clientManager.updateClient}"
                     process="@this"/>
+            
         </p:inputText>
         <h:outputText value="" />        
 
@@ -98,6 +101,7 @@ Email: info@dpbennett.com.jm
                          id="typeOfBusiness"
                          maxlength="50"
                          editable="true">
+            
             <p:ajax
                 global="true"
                 event="change"
@@ -106,17 +110,7 @@ Email: info@dpbennett.com.jm
 
             <f:selectItems value="#{humanResourceManager.typesOfBusinessList}" />
 
-        </p:selectOneMenu>
-        <ui:remove>
-            <p:inputText value="#{clientManager.selectedClient.typeOfBusiness}"
-                         id="typeOfBusiness"
-                         disabled="#{!clientManager.user.can('AddClient')}" >
-                <p:ajax event="change"                    
-                        global="true"                   
-                        listener="#{clientManager.updateClient}"
-                        process="@this"/>
-            </p:inputText>
-        </ui:remove>
+        </p:selectOneMenu>      
         <h:outputText value="" />
 
         <p:outputLabel id="currentBillingAddress" value="Most recent billing address" 
@@ -126,32 +120,7 @@ Email: info@dpbennett.com.jm
             <p:watermark for="addressLine1" value="-- none --" />
         </h:panelGroup>
         <h:outputText value="" />
-        <ui:remove>
-            <p:menuButton icon="pi pi-pencil" title="Add or edit address">
-                <p:menuitem value="Edit"
-                            icon="pi pi-pencil"
-                            title="Edit address"
-                            update=":addressForm"
-                            oncomplete="PF('addressFormDialog').show();"
-                            actionListener="#{clientManager.editCurrentAddress}" 
-                            process="@this" >
 
-                    <p:resetInput target=":addressForm" />
-
-                </p:menuitem>
-                <p:menuitem value="New"
-                            icon="pi p-plus" 
-                            title="Add new address"
-                            update=":addressForm"
-                            oncomplete="PF('addressFormDialog').show();"
-                            actionListener="#{clientManager.createNewAddress}" 
-                            process="@this" >
-
-                    <p:resetInput target=":addressForm" />
-
-                </p:menuitem>
-            </p:menuButton>  
-        </ui:remove>
 
         <h:outputText value="" />
         <h:outputText value="#{clientManager.currentAddress.addressLine2}" />
@@ -168,32 +137,24 @@ Email: info@dpbennett.com.jm
         <h:outputText id="currentContact" value="Most recent contact" />    
         <h:outputText value="#{clientManager.currentContact.friendlyName}" />
         <h:outputText value="" />
-        <ui:remove>
-            <p:menuButton icon="pi pi-pencil" title="Add or edit contact">
-                <p:menuitem value="Edit"
-                            icon="pi pi-pencil"
-                            title="Edit contact"
-                            update=":contactForm"
-                            oncomplete="PF('contactFormDialog').show();"
-                            actionListener="#{clientManager.editCurrentContact}" 
-                            process="@this" >
 
-                    <p:resetInput target=":contactForm" />
+        <p:outputLabel for="notes" value="Notes" />   
+        <p:inputTextarea
+            value="#{clientManager.selectedClient.notes}"
+            id="notes"
+            maxlength="250"
+            autoResize="false"
+            rows="3"
+            style="width:100%" >
 
-                </p:menuitem>
-                <p:menuitem value="New"
-                            icon="pi pi-plus" 
-                            title="Add new contact"
-                            update=":contactForm"
-                            oncomplete="PF('contactFormDialog').show();"
-                            actionListener="#{clientManager.createNewContact}" 
-                            process="@this" >
+            <p:ajax event="change"                    
+                    global="true"                   
+                    listener="#{clientManager.updateClient}"
+                    process="@this"/>
 
-                    <p:resetInput target=":contactForm" />
+        </p:inputTextarea>   
+        <h:outputText value="" />
 
-                </p:menuitem>
-            </p:menuButton>      
-        </ui:remove>
     </h:panelGrid>                    
 
 </html>
