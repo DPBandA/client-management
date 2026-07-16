@@ -1,0 +1,162 @@
+<!--
+Client Management (CM) 
+Copyright (C) 2026  D P Bennett & Associates Limited
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+Email: info@dpbennett.com.jm
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+    <h:panelGrid id="generalDetailsPanelGrid" columns="3" cellspacing="5" >
+
+        <p:outputLabel for="clientActive" value="Active" style="font-weight: bold;" />  
+        <h:panelGroup>
+            <p:selectBooleanCheckbox style="vertical-align: middle"
+                                     id="clientActive"
+                                     required="true"
+                                     disabled="#{!clientManager.user.can('AddClient')}"
+                                     value="#{clientManager.selectedClient.active}" >
+
+                <p:ajax listener="#{clientManager.updateClient}"
+                        event="change"                                      
+                        process="@this"/>
+
+            </p:selectBooleanCheckbox>     
+
+            <p:tooltip for="clientActive" value="Check to activate this client" 
+                       showEffect="fade" hideEffect="fade" />            
+        </h:panelGroup>
+        <h:outputText value="" />
+
+        <p:outputLabel value="Name" style="font-weight: bold;" 
+                       for="clientName" />       
+        <p:inputText value="#{clientManager.selectedClient.name}"
+                     id="clientName"
+                     disabled="#{!clientManager.user.can('AddClient')}"
+                     required="true"
+                     requiredMessage="Name Required"
+                     validator="clientValidator">
+
+            <f:attribute name="isNewClient" value="#{clientManager.isNewClient}" />
+
+            <p:ajax event="change"
+                    global="true"      
+                    update="clientName"
+                    listener="#{clientManager.updateClientName}"
+                    process="@this"/>
+            
+        </p:inputText>     
+        <h:outputText value="" />
+
+        <p:outputLabel value="Identification type" 
+                       for="identificationType" />
+        <p:selectOneMenu id="identificationType"                             
+                         disabled="#{!clientManager.user.can('AddClient')}"
+                         value="#{clientManager.selectedClient.identificationType}">
+
+            <f:selectItems  value="#{humanResourceManager.identificationTypeList}"
+                            var="identificationType"                            
+                            itemValue="#{type}"
+                            itemLabel="#{type}"/>
+
+            <p:ajax listener="#{clientManager.updateClient}"
+                    global="true"
+                    process="@this"/>
+
+        </p:selectOneMenu>  
+        <h:outputText value="" />
+
+        <p:outputLabel value="Identification" for="identification" />        
+        <p:inputText value="#{clientManager.selectedClient.identification}"
+                     id="identification"
+                     disabled="#{!clientManager.user.can('AddClient')}" >
+            
+            <p:ajax event="change"                    
+                    global="true"                   
+                    listener="#{clientManager.updateClient}"
+                    process="@this"/>
+            
+        </p:inputText>
+        <h:outputText value="" />        
+
+        <p:outputLabel value="Type of business" for="typeOfBusiness" />     
+        <p:selectOneMenu value="#{clientManager.selectedClient.typeOfBusiness}"   
+                         id="typeOfBusiness"
+                         maxlength="50"
+                         editable="true">
+            
+            <p:ajax
+                global="true"
+                event="change"
+                listener="#{clientManager.updateClient}"
+                process="@this" />
+
+            <f:selectItems value="#{humanResourceManager.typesOfBusinessList}" />
+
+        </p:selectOneMenu>      
+        <h:outputText value="" />
+
+        <p:outputLabel id="currentBillingAddress" value="Most recent billing address" 
+                       for="addressLine1" /> 
+        <h:panelGroup>
+            <h:outputText id="addressLine1" value="#{clientManager.currentAddress.addressLine1FriendlyDisplay}"/>  
+            <p:watermark for="addressLine1" value="-- none --" />
+        </h:panelGroup>
+        <h:outputText value="" />
+
+
+        <h:outputText value="" />
+        <h:outputText value="#{clientManager.currentAddress.addressLine2}" />
+        <h:outputText value="" />
+
+        <h:outputText value="" />
+        <h:outputText value="#{clientManager.currentAddress.city}" />
+        <h:outputText value="" />
+
+        <h:outputText value="" />
+        <h:outputText value="#{clientManager.currentAddress.stateOrProvince}" />
+        <h:outputText value="" />
+
+        <h:outputText id="currentContact" value="Most recent contact" />    
+        <h:outputText value="#{clientManager.currentContact.friendlyName}" />
+        <h:outputText value="" />
+
+        <p:outputLabel for="notes" value="Notes" />   
+        <p:inputTextarea
+            value="#{clientManager.selectedClient.notes}"
+            id="notes"
+            maxlength="250"
+            autoResize="false"
+            rows="3"
+            style="width:100%" >
+
+            <p:ajax event="change"                    
+                    global="true"                   
+                    listener="#{clientManager.updateClient}"
+                    process="@this"/>
+
+        </p:inputTextarea>   
+        <h:outputText value="" />
+
+    </h:panelGrid>                    
+
+</html>
+
+
