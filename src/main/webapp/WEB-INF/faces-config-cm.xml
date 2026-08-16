@@ -3,16 +3,7 @@
               xmlns="http://java.sun.com/xml/ns/javaee" 
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
-  
-    <converter>
-        <converter-id>clientAddressConverter</converter-id>
-        <converter-class>jm.com.dpbennett.cm.converter.ClientAddressConverter</converter-class>
-    </converter> 
-    <converter>
-        <converter-id>clientContactConverter</converter-id>
-        <converter-class>jm.com.dpbennett.cm.converter.ClientContactConverter</converter-class>
-    </converter>
-    
+   
     <validator>
         <validator-id>clientValidator</validator-id>
         <validator-class>jm.com.dpbennett.cm.validator.ClientValidator</validator-class>
