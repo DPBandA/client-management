@@ -40,6 +40,18 @@ Email: info@dpbennett.com.jm
                 <p:resetInput target=":contactForm" />
 
             </p:commandButton>
+            <p:spacer width="20" />
+            <h:panelGroup>
+                <p:inputText placeholder="Enter search text"
+                             value="#{clientManager.contactSearchText}" >
+
+                    <p:ajax event="keyup"
+                            update="contactsTable"
+                            process="@this"
+                            listener="#{clientManager.doContactSearch}" />
+
+                </p:inputText>                  
+            </h:panelGroup>
         </p:toolbarGroup>
     </p:toolbar> 
 
@@ -49,7 +61,7 @@ Email: info@dpbennett.com.jm
                  rows="15"
                  reflow="true"
                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                 value="#{clientManager.contactsModel}">
+                 value="#{clientManager.filteredContactsModel}">
 
         <f:facet name="header">
             Contacts

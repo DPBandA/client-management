@@ -26,7 +26,7 @@ Email: info@dpbennett.com.jm
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"   
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">    
-    
+
     <p:toolbar style="margin-bottom: 1px;">
         <p:toolbarGroup align="left">
             <p:commandButton value="New"
@@ -40,6 +40,18 @@ Email: info@dpbennett.com.jm
                 <p:resetInput target=":addressForm" />
 
             </p:commandButton>
+            <p:spacer width="20" />
+            <h:panelGroup>
+                <p:inputText placeholder="Enter search text"
+                             value="#{clientManager.addressSearchText}" >
+
+                    <p:ajax event="keyup"
+                            update="addressesTable"
+                            process="@this"
+                            listener="#{clientManager.doAddressSearch}" />
+
+                </p:inputText>                  
+            </h:panelGroup>
         </p:toolbarGroup>
     </p:toolbar>
     <p:dataTable id="addressesTable"
@@ -48,7 +60,7 @@ Email: info@dpbennett.com.jm
                  rows="15"
                  reflow="true"
                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                 value="#{clientManager.addressesModel}">
+                 value="#{clientManager.filteredAddressesModel}">
 
         <f:facet name="header">
             Addresses
@@ -80,14 +92,14 @@ Email: info@dpbennett.com.jm
                 </p:menuitem>
 
                 <p:menuitem
-                        value="Delete"
-                        icon="pi pi-trash" 
-                        oncomplete="PF('deleteAddressDialog').show();"                                            
-                        process="@this"
-                        title="Delete this address">
+                    value="Delete"
+                    icon="pi pi-trash" 
+                    oncomplete="PF('deleteAddressDialog').show();"                                            
+                    process="@this"
+                    title="Delete this address">
 
-                        <f:setPropertyActionListener value="#{address}"
-                                                     target="#{clientManager.selectedAddress}" />
+                    <f:setPropertyActionListener value="#{address}"
+                                                 target="#{clientManager.selectedAddress}" />
                 </p:menuitem>
             </p:menuButton>    
         </p:column>
