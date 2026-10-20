@@ -63,7 +63,7 @@ Email: info@dpbennett.com.jm
                 </p:toolbarGroup>
             </p:toolbar>
 
-            <p:tabView id="clientFormTabView"
+            <p:accordionPanel id="clientFormTabView"
                        dynamic="false"
                        style="margin-top: 1px;margin-bottom: 1px;"
                        widgetVar="clientFormTabVar" >
@@ -85,7 +85,8 @@ Email: info@dpbennett.com.jm
                 <p:tab title="Tracking">
                     <ui:include src="trackingTab.xhtml" />
                 </p:tab>
-            </p:tabView>
+            </p:accordionPanel>
+            
             <p:toolbar>
                 <p:toolbarGroup>
                     <p:commandButton value="Ok"
