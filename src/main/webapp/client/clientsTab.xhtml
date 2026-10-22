@@ -49,6 +49,7 @@ Email: info@dpbennett.com.jm
                              value="#{clientManager.clientSearchText}" />
                 <p:commandButton id="clientSearchButton"
                                  class="search-button"   
+                                 style="margin-top: 5px;"
                                  actionListener="#{clientManager.doClientSearch}"
                                  update=":mainTabViewForm:mainTabView:clientsTable"
                                  icon="pi pi-search"
@@ -61,7 +62,7 @@ Email: info@dpbennett.com.jm
             <p:outputLabel value="Active clients only" for="activeClientsOnly"/>  
             <p:spacer width="5" />
             <h:panelGroup style="margin-top: 5px;">
-                <p:selectBooleanCheckbox style="vertical-align: middle"
+                <p:selectBooleanCheckbox style="vertical-align: middle;margin-top: 5px;"
                                          id="activeClientsOnly"
                                          value="#{clientManager.isActiveClientsOnly}" >
                     <p:ajax  update=":mainTabViewForm:mainTabView:clientsTable"
