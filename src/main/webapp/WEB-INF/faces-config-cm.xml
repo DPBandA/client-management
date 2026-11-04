@@ -17,7 +17,7 @@
         <validator-class>jm.com.dpbennett.cm.validator.GeneralClientValidator</validator-class>
     </validator>
     <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
+        <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>clientDialog</from-outcome>
             <to-view-id>/client/clientDialog.xhtml</to-view-id>
