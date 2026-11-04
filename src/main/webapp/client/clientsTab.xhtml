@@ -33,7 +33,7 @@ Email: info@dpbennett.com.jm
                 value="New"
                 icon="pi pi-plus" 
                 disabled="#{!clientManager.user.can('AddClient')}"
-                actionListener="#{clientManager.createNewClient}"                                            
+                actionListener="#{clientManager.createNewClient('clientDialog')}"                                            
                 process="@this"
                 title="Add a new client to the client database" >
 
@@ -144,7 +144,7 @@ Email: info@dpbennett.com.jm
 
         <p:column>
             <p:commandButton icon="pi pi-pencil"
-                             actionListener="#{clientManager.editSelectedClient}"
+                             actionListener="#{clientManager.editSelectedClient('clientDialog')}"
                              process="@this"
                              title="View or edit this client's detail">
 
