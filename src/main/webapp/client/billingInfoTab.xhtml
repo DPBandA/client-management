@@ -26,7 +26,7 @@ Email: info@dpbennett.com.jm
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"   
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"> 
-    
+
     <h:panelGrid columns="2" cellspacing="10">
 
         <p:outputLabel value="Account Id" for="account" /> 
@@ -52,6 +52,7 @@ Email: info@dpbennett.com.jm
         <p:outputLabel value="Billing address" style="font-weight: bold" 
                        for="billingAddress" />    
         <p:autoComplete id="billingAddress"
+                        disabled="#{clientManager.selectedClient.id == null}"
                         escape="false"
                         value="#{clientManager.selectedClient.billingAddress}"
                         dropdown="true"
@@ -66,7 +67,7 @@ Email: info@dpbennett.com.jm
                         completeMethod="#{clientManager.completeClientAddress}">
 
             <f:converter converterId="clientAddressConverter"/>
-            
+
             <f:attribute name="currentClient" value="#{clientManager.selectedClient}" />            
             <f:attribute name="em" value="#{clientManager.entityManager1}"/>
 
@@ -78,6 +79,7 @@ Email: info@dpbennett.com.jm
         <p:outputLabel value="Billing contact" style="font-weight: bold"
                        for="billingContact" />  
         <p:autoComplete id="billingContact"
+                        disabled="#{clientManager.selectedClient.id == null}"
                         escape="false"
                         value="#{clientManager.selectedClient.billingContact}"
                         dropdown="true"
@@ -92,7 +94,7 @@ Email: info@dpbennett.com.jm
                         completeMethod="#{clientManager.completeClientContact}">
 
             <f:converter converterId="clientContactConverter"/>
-            
+
             <f:attribute name="em" value="#{clientManager.entityManager1}"/>            
             <f:attribute name="currentClient" value="#{clientManager.selectedClient}" />
 

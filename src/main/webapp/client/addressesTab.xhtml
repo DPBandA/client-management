@@ -40,8 +40,8 @@ Email: info@dpbennett.com.jm
                 <p:resetInput target=":addressForm" />
 
             </p:commandButton>
-            <p:spacer width="20" />
-            <h:panelGroup>
+            <p:spacer width="20" rendered="false" />
+            <h:panelGroup rendered="false">
                 <p:inputText placeholder="Enter search text"
                              value="#{clientManager.addressSearchText}" >
 
@@ -60,7 +60,7 @@ Email: info@dpbennett.com.jm
                  rows="15"
                  reflow="true"
                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                 value="#{clientManager.filteredAddressesModel}">
+                 value="#{clientManager.addressesModel}">
 
         <f:facet name="header">
             Addresses
